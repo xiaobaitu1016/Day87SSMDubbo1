@@ -184,7 +184,7 @@ public class HchSufferController {
 
         model.addAttribute("numberCur",allNumberByExample.get(0));
 
-        return "sufferWaitDescr";
+        return "ht/sufferWaitDescr";
     }
 
 }
