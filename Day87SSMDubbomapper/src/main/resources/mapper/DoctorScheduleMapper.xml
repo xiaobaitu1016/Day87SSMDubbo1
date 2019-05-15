@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.DoctorScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.qf.pojo.DoctorSchedule" >
+    <id column="dscid" property="dscid" jdbcType="INTEGER" />
+    <result column="dsid" property="dsid" jdbcType="INTEGER" />
+    <result column="did" property="did" jdbcType="INTEGER" />
+    <result column="weekday" property="weekday" jdbcType="INTEGER" />
+    <result column="whichclass" property="whichclass" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <association property="departmentsSmall" column="dsid" select="com.qf.mapper.DepartmentsSmallMapper.selectByPrimaryKey" />
+    <association property="doctor" column="did" select="com.qf.mapper.DoctorMapper.selectByPrimaryKey" />
+
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dscid, dsid, did, weekday, whichclass, remarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.pojo.DoctorScheduleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from doctor_schedule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from doctor_schedule
+    where dscid = #{dscid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doctor_schedule
+    where dscid = #{dscid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qf.pojo.DoctorScheduleExample" >
+    delete from doctor_schedule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qf.pojo.DoctorSchedule" >
+    insert into doctor_schedule (dscid, dsid, did, 
+      weekday, whichclass, remarks
+      )
+    values (#{dscid,jdbcType=INTEGER}, #{dsid,jdbcType=INTEGER}, #{did,jdbcType=INTEGER}, 
+      #{weekday,jdbcType=INTEGER}, #{whichclass,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.pojo.DoctorSchedule" >
+    insert into doctor_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dscid != null" >
+        dscid,
+      </if>
+      <if test="dsid != null" >
+        dsid,
+      </if>
+      <if test="did != null" >
+        did,
+      </if>
+      <if test="weekday != null" >
+        weekday,
+      </if>
+      <if test="whichclass != null" >
+        whichclass,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dscid != null" >
+        #{dscid,jdbcType=INTEGER},
+      </if>
+      <if test="dsid != null" >
+        #{dsid,jdbcType=INTEGER},
+      </if>
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="weekday != null" >
+        #{weekday,jdbcType=INTEGER},
+      </if>
+      <if test="whichclass != null" >
+        #{whichclass,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qf.pojo.DoctorScheduleExample" resultType="java.lang.Integer" >
+    select count(*) from doctor_schedule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update doctor_schedule
+    <set >
+      <if test="record.dscid != null" >
+        dscid = #{record.dscid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dsid != null" >
+        dsid = #{record.dsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.did != null" >
+        did = #{record.did,jdbcType=INTEGER},
+      </if>
+      <if test="record.weekday != null" >
+        weekday = #{record.weekday,jdbcType=INTEGER},
+      </if>
+      <if test="record.whichclass != null" >
+        whichclass = #{record.whichclass,jdbcType=INTEGER},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update doctor_schedule
+    set dscid = #{record.dscid,jdbcType=INTEGER},
+      dsid = #{record.dsid,jdbcType=INTEGER},
+      did = #{record.did,jdbcType=INTEGER},
+      weekday = #{record.weekday,jdbcType=INTEGER},
+      whichclass = #{record.whichclass,jdbcType=INTEGER},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.pojo.DoctorSchedule" >
+    update doctor_schedule
+    <set >
+      <if test="dsid != null" >
+        dsid = #{dsid,jdbcType=INTEGER},
+      </if>
+      <if test="did != null" >
+        did = #{did,jdbcType=INTEGER},
+      </if>
+      <if test="weekday != null" >
+        weekday = #{weekday,jdbcType=INTEGER},
+      </if>
+      <if test="whichclass != null" >
+        whichclass = #{whichclass,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dscid = #{dscid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.pojo.DoctorSchedule" >
+    update doctor_schedule
+    set dsid = #{dsid,jdbcType=INTEGER},
+      did = #{did,jdbcType=INTEGER},
+      weekday = #{weekday,jdbcType=INTEGER},
+      whichclass = #{whichclass,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where dscid = #{dscid,jdbcType=INTEGER}
+  </update>
+</mapper>

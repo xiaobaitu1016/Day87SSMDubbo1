@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.NumberMapper" >
+  <resultMap id="BaseResultMap" type="com.qf.pojo.Number" >
+    <id column="nuid" property="nuid" jdbcType="INTEGER" />
+    <result column="data" property="data" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="ilid" property="ilid" jdbcType="INTEGER" />
+    <result column="did" property="did" jdbcType="INTEGER" />
+    <result column="suid" property="suid" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <association property="illness" column="ilid" select="com.qf.mapper.IllnessMapper.selectByPrimaryKey" />
+    <association property="doctor" column="did" select="com.qf.mapper.DoctorMapper.selectByPrimaryKey" />
+    <association property="suffer" column="suid" select="com.qf.mapper.SufferMapper.selectByPrimaryKey" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    nuid, data, count, ilid, did, suid, state, time, descr, remarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.pojo.NumberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from number
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from number
+    where nuid = #{nuid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from number
+    where nuid = #{nuid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qf.pojo.NumberExample" >
+    delete from number
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qf.pojo.Number" >
+    insert into number (nuid, data, count, 
+      ilid, did, suid, state, 
+      time, descr, remarks
+      )
+    values (#{nuid,jdbcType=INTEGER}, #{data,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
+      #{ilid,jdbcType=INTEGER}, #{did,jdbcType=INTEGER}, #{suid,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{descr,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.pojo.Number" >
+    insert into number
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nuid != null" >
+        nuid,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="ilid != null" >
+        ilid,
+      </if>
+      <if test="did != null" >
+        did,
+      </if>
+      <if test="suid != null" >
+        suid,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nuid != null" >
+        #{nuid,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="ilid != null" >
+        #{ilid,jdbcType=INTEGER},
+      </if>
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="suid != null" >
+        #{suid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qf.pojo.NumberExample" resultType="java.lang.Integer" >
+    select count(*) from number
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update number
+    <set >
+      <if test="record.nuid != null" >
+        nuid = #{record.nuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.data != null" >
+        data = #{record.data,jdbcType=VARCHAR},
+      </if>
+      <if test="record.count != null" >
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.ilid != null" >
+        ilid = #{record.ilid,jdbcType=INTEGER},
+      </if>
+      <if test="record.did != null" >
+        did = #{record.did,jdbcType=INTEGER},
+      </if>
+      <if test="record.suid != null" >
+        suid = #{record.suid,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.descr != null" >
+        descr = #{record.descr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update number
+    set nuid = #{record.nuid,jdbcType=INTEGER},
+      data = #{record.data,jdbcType=VARCHAR},
+      count = #{record.count,jdbcType=INTEGER},
+      ilid = #{record.ilid,jdbcType=INTEGER},
+      did = #{record.did,jdbcType=INTEGER},
+      suid = #{record.suid,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      descr = #{record.descr,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.pojo.Number" >
+    update number
+    <set >
+      <if test="data != null" >
+        data = #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="ilid != null" >
+        ilid = #{ilid,jdbcType=INTEGER},
+      </if>
+      <if test="did != null" >
+        did = #{did,jdbcType=INTEGER},
+      </if>
+      <if test="suid != null" >
+        suid = #{suid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where nuid = #{nuid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.pojo.Number" >
+    update number
+    set data = #{data,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      ilid = #{ilid,jdbcType=INTEGER},
+      did = #{did,jdbcType=INTEGER},
+      suid = #{suid,jdbcType=INTEGER},
+      state = #{state,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      descr = #{descr,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where nuid = #{nuid,jdbcType=INTEGER}
+  </update>
+</mapper>

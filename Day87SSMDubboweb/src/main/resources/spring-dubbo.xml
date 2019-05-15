@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!--<context:component-scan base-package="com.je1809.service"/>-->
+    <dubbo:application name="Day87SSMDubboweb"/>
+    <dubbo:registry address="zookeeper://10.12.159.162:2181"/>
+    <!--<dubbo:registry address="zookeeper://192.168.0.103:2181"/>-->
+    <dubbo:reference interface="com.qf.service.IUserService" id="userServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IDoctorService" id="doctorServiceImpl"/>
+
+
+    <dubbo:reference interface="com.qf.service.IConsultAnswerService" id="consultAnswerServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IConsultService" id="consultServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IDepartmentsBigService" id="departmentsBigServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IDepartmentsSmallService" id="departmentsSmallServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IDocRoleService" id="docRoleServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IDoctorCommentService" id="doctorCommentServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IDoctorIllnessService" id="doctorIllnessServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IDoctorRoleService" id="doctorRoleServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IDoctorScheduleService" id="doctorScheduleServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IIllnessService" id="illnessServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.INumberService" id="numberServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IPermissionService" id="permissionServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.IRolesService" id="rolesServiceImpl"/>
+
+    <dubbo:reference interface="com.qf.service.ISufferService" id="sufferServiceImpl"/>
+
+</beans>

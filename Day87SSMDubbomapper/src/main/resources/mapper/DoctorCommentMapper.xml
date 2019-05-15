@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.DoctorCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.qf.pojo.DoctorComment" >
+    <id column="dcid" property="dcid" jdbcType="INTEGER" />
+    <result column="did" property="did" jdbcType="INTEGER" />
+    <result column="doctor_manner" property="doctorManner" jdbcType="VARCHAR" />
+    <result column="degree" property="degree" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="descr" property="descr" jdbcType="CHAR" />
+    <result column="ilid" property="ilid" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <association property="doctor" column="did" select="com.qf.mapper.DoctorMapper.selectByPrimaryKey" />
+    <association property="illness" column="ilid" select="com.qf.mapper.IllnessMapper.selectByPrimaryKey" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dcid, did, doctor_manner, degree, number, time, descr, ilid, remarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.pojo.DoctorCommentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from doctor_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from doctor_comment
+    where dcid = #{dcid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByDid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from doctor_comment
+    where did = #{did,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doctor_comment
+    where dcid = #{dcid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qf.pojo.DoctorCommentExample" >
+    delete from doctor_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qf.pojo.DoctorComment" >
+    insert into doctor_comment (dcid, did, doctor_manner, 
+      degree, number, time, 
+      descr, ilid, remarks)
+    values (#{dcid,jdbcType=INTEGER}, #{did,jdbcType=INTEGER}, #{doctorManner,jdbcType=VARCHAR}, 
+      #{degree,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{descr,jdbcType=CHAR}, #{ilid,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.pojo.DoctorComment" >
+    insert into doctor_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dcid != null" >
+        dcid,
+      </if>
+      <if test="did != null" >
+        did,
+      </if>
+      <if test="doctorManner != null" >
+        doctor_manner,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="ilid != null" >
+        ilid,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dcid != null" >
+        #{dcid,jdbcType=INTEGER},
+      </if>
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="doctorManner != null" >
+        #{doctorManner,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=CHAR},
+      </if>
+      <if test="ilid != null" >
+        #{ilid,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qf.pojo.DoctorCommentExample" resultType="java.lang.Integer" >
+    select count(*) from doctor_comment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update doctor_comment
+    <set >
+      <if test="record.dcid != null" >
+        dcid = #{record.dcid,jdbcType=INTEGER},
+      </if>
+      <if test="record.did != null" >
+        did = #{record.did,jdbcType=INTEGER},
+      </if>
+      <if test="record.doctorManner != null" >
+        doctor_manner = #{record.doctorManner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null" >
+        degree = #{record.degree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.descr != null" >
+        descr = #{record.descr,jdbcType=CHAR},
+      </if>
+      <if test="record.ilid != null" >
+        ilid = #{record.ilid,jdbcType=INTEGER},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update doctor_comment
+    set dcid = #{record.dcid,jdbcType=INTEGER},
+      did = #{record.did,jdbcType=INTEGER},
+      doctor_manner = #{record.doctorManner,jdbcType=VARCHAR},
+      degree = #{record.degree,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      descr = #{record.descr,jdbcType=CHAR},
+      ilid = #{record.ilid,jdbcType=INTEGER},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.pojo.DoctorComment" >
+    update doctor_comment
+    <set >
+      <if test="did != null" >
+        did = #{did,jdbcType=INTEGER},
+      </if>
+      <if test="doctorManner != null" >
+        doctor_manner = #{doctorManner,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=CHAR},
+      </if>
+      <if test="ilid != null" >
+        ilid = #{ilid,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dcid = #{dcid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.pojo.DoctorComment" >
+    update doctor_comment
+    set did = #{did,jdbcType=INTEGER},
+      doctor_manner = #{doctorManner,jdbcType=VARCHAR},
+      degree = #{degree,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      descr = #{descr,jdbcType=CHAR},
+      ilid = #{ilid,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where dcid = #{dcid,jdbcType=INTEGER}
+  </update>
+</mapper>

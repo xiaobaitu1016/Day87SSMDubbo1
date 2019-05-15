@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.DepartmentsSmallMapper" >
+  <resultMap id="BaseResultMap" type="com.qf.pojo.DepartmentsSmall" >
+    <id column="dsid" property="dsid" jdbcType="INTEGER" />
+    <result column="dbid" property="dbid" jdbcType="INTEGER" />
+    <result column="dsname" property="dsname" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <collection property="illnessList" column="dsid" ofType="com.qf.pojo.Illness"
+                select="com.qf.mapper.IllnessMapper.selectByDsid" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dsid, dbid, dsname, remarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qf.pojo.DepartmentsSmallExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from departments_small
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from departments_small
+    where dsid = #{dsid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKeyDbid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from departments_small
+    where dbid = #{dbid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from departments_small
+    where dsid = #{dsid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qf.pojo.DepartmentsSmallExample" >
+    delete from departments_small
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qf.pojo.DepartmentsSmall" >
+    insert into departments_small (dsid, dbid, dsname, 
+      remarks)
+    values (#{dsid,jdbcType=INTEGER}, #{dbid,jdbcType=INTEGER}, #{dsname,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.pojo.DepartmentsSmall" >
+    insert into departments_small
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dsid != null" >
+        dsid,
+      </if>
+      <if test="dbid != null" >
+        dbid,
+      </if>
+      <if test="dsname != null" >
+        dsname,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dsid != null" >
+        #{dsid,jdbcType=INTEGER},
+      </if>
+      <if test="dbid != null" >
+        #{dbid,jdbcType=INTEGER},
+      </if>
+      <if test="dsname != null" >
+        #{dsname,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qf.pojo.DepartmentsSmallExample" resultType="java.lang.Integer" >
+    select count(*) from departments_small
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update departments_small
+    <set >
+      <if test="record.dsid != null" >
+        dsid = #{record.dsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dbid != null" >
+        dbid = #{record.dbid,jdbcType=INTEGER},
+      </if>
+      <if test="record.dsname != null" >
+        dsname = #{record.dsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update departments_small
+    set dsid = #{record.dsid,jdbcType=INTEGER},
+      dbid = #{record.dbid,jdbcType=INTEGER},
+      dsname = #{record.dsname,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.pojo.DepartmentsSmall" >
+    update departments_small
+    <set >
+      <if test="dbid != null" >
+        dbid = #{dbid,jdbcType=INTEGER},
+      </if>
+      <if test="dsname != null" >
+        dsname = #{dsname,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dsid = #{dsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.pojo.DepartmentsSmall" >
+    update departments_small
+    set dbid = #{dbid,jdbcType=INTEGER},
+      dsname = #{dsname,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where dsid = #{dsid,jdbcType=INTEGER}
+  </update>
+
+</mapper>
