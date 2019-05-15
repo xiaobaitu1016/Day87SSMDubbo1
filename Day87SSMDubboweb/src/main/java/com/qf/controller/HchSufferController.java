@@ -183,7 +183,7 @@ public class HchSufferController {
         List<Number> allNumberByExample = numberService.getAllNumberByExample(numberExample);
 
         model.addAttribute("numberCur",allNumberByExample.get(0));
-
+        //
         return "sufferWaitDescr";
     }
 

@@ -46,7 +46,7 @@ public class HchMainController {
         List<DoctorComment> allDoctorCommentByExample = doctorCommentService.getAllDoctorCommentByExample(doctorCommentExample);
 
         model.addAttribute("commentCount",allDoctorCommentByExample.size());
-
+//
         ConsultExample consultExample = new ConsultExample();
         ConsultExample.Criteria criteria1 = consultExample.createCriteria();
         criteria1.andDidEqualTo(curDoctor.getDid());
