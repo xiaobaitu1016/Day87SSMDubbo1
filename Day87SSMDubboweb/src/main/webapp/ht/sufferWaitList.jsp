@@ -76,7 +76,7 @@
             ,method: 'post'
             ,id: 'tableLine'
             ,url:'/htAllSufferWait'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增11
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,page: true
             ,toolbar: '#toolbarDemo'
             ,limits: [3,5,8,10,20]

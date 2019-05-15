@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>就诊患者详情</title>
-    sad
 </head>
 <body>
 
