@@ -319,7 +319,7 @@
             <li class="  on"><a href="" target="_self">全部</a></li>
             <c:forEach items="${small}" var="s">
                <c:if test="${s.dbid != 4}" >
-                   <li class="  "><a href="" target="_self">${s.dsname}</a></li>
+                   <li class="  "><a href="/getOneSmallId?dsid=${s.dsid}" target="_self">${s.dsname}</a></li>
                </c:if>
             </c:forEach>
         </ul>
@@ -328,7 +328,7 @@
         <ul class="list_ul clearfix">
             <li class="  on"> <a href="" target="_self">全部</a> </li>
             <c:forEach items="${allIllness}" var="a">
-                <li class=" "> <a href="" target="_self">${a.ilname}</a> </li>
+                <li class=" "> <a href="/getOneSmallId?dsid=${a.dsid}" target="_self">${a.ilname}</a> </li>
             </c:forEach>
         </ul>
         <a class="unfold border H_open H_open1" href="javascript:void(0);" target="_self"> 展开 </a> <a class="unfold border H_close H_contraction1" href="javascript:;" target="_self"> 收缩 </a>  </div>
@@ -350,9 +350,9 @@
             <c:forEach var="d" items="${allDoctor}" >
                  <c:if test="${d.departmentsSmall.dbid != 4}">
                 <ul>
-                    <li> <a href=""> <img src="http://photo.orsoon.com/180610/EPS-180610_425/manyYFHNX9_small.jpg" class="fl H_p" />
+                    <li> <a href="/qt/Doctorxiangqing.jsp"> <img src="http://photo.orsoon.com/180610/EPS-180610_425/manyYFHNX9_small.jpg" class="fl H_p" />
                     </a>
-                        <div class="H_d_down H_d fl"> <a href="">
+                        <div class="H_d_down H_d fl"> <a href="/qt/Doctorxiangqing.jsp">
                             <h3 class="fl">${d.dname}</h3></a>
                             <Span class="fl doctor_titles">(${d.doctorRole.drname})
                                 </Span> <small class="clr">${d.departmentsSmall.dsname}</small>
