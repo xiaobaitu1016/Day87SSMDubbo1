@@ -10,6 +10,7 @@ import com.qf.util.LayuiUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -171,6 +172,19 @@ public class HchSufferController {
 
         return numberLayuiUtil;
 
+    }
+
+    @GetMapping("/htSufferWaitDescr/{nuid}")
+    public String htSufferWaitDescr(Model model, @PathVariable int nuid){
+        NumberExample numberExample = new NumberExample();
+        NumberExample.Criteria criteria = numberExample.createCriteria();
+        criteria.andNuidEqualTo(nuid);
+
+        List<Number> allNumberByExample = numberService.getAllNumberByExample(numberExample);
+
+        model.addAttribute("numberCur",allNumberByExample.get(0));
+
+        return "sufferWaitDescr";
     }
 
 }
