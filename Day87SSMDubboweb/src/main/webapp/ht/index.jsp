@@ -70,8 +70,8 @@
                                 <i class="layui-icon">&#xe6c6;</i><span> 患者信息列表</span></a>
                         </dd>
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'/toHtSufferWaitList',icon:'&#xe6c6;',title:'待诊患者信息',id:'2'}">
-                                <i class="layui-icon">&#xe6c6;</i><span> 待诊患者信息</span></a>
+                            <a href="javascript:;" kit-target data-options="{url:'/toHtSufferWaitList',icon:'&#xe6c6;',title:'就诊患者信息',id:'2'}">
+                                <i class="layui-icon">&#xe6c6;</i><span> 就诊患者信息</span></a>
                         </dd>
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'/toHtSufferWaitList',icon:'&#xe6c6;',title:'我的待诊',id:'3'}">

@@ -171,10 +171,8 @@
             var data = obj.data;
             console.log(data);
             if(obj.event === 'desrc'){
-                var name = encodeURIComponent(data.lid);
-                location.href = "/descrLineByLid/"+data.lid;
-            }else if (obj.event === 'update') {
-                location.href = "/updateLineByLid/"+data.lid;
+                var name = encodeURIComponent(data.nuid);
+                location.href = "/htSufferWaitDescr/"+data.nuid;
             }
         });
 
