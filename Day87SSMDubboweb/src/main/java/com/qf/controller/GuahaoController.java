@@ -32,7 +32,7 @@ public class GuahaoController {
         List<Illness> allIllness = iIllnessService.getAllIllnessByExample(null);
         List<DoctorSchedule> allDoctorSchedule = doctorScheduleService.getAllDoctorScheduleByExample(null);
         List<Doctor> allDoctor = doctorService.getAllDoctor(null);
-        System.out.println(allDoctor);
+
         model.addAttribute("small",alldepartmentsSmall);
         model.addAttribute("allIllness",allIllness);
         model.addAttribute("allDoctorSchedule",allDoctorSchedule);
@@ -64,7 +64,7 @@ public class GuahaoController {
         DoctorScheduleExample.Criteria criteria3 = doctorScheduleExample.createCriteria();
         criteria3.andDsidEqualTo(dsid);
         List<DoctorSchedule> allDoctorScheduleByExample = doctorScheduleService.getAllDoctorScheduleByExample(doctorScheduleExample);
-        System.out.println(allDoctorScheduleByExample);
+
 
 
         model.addAttribute("small",allDepartmentsSmallByExample);
@@ -74,5 +74,23 @@ public class GuahaoController {
 
         return "qt/guahao";
     }
+    @GetMapping("/Doctorxiangqing")
+    public String Doctorxiangqing(int did,Model model){
+        DoctorExample doctorExample = new DoctorExample();
+        DoctorExample.Criteria criteria1 = doctorExample.createCriteria();
+        criteria1.andDidEqualTo(did);
+        List<Doctor> allDoctor = doctorService.getAllDoctor(doctorExample);
+        System.out.println(allDoctor);
+        model.addAttribute("Doctor",allDoctor);
 
+
+        DoctorScheduleExample doctorScheduleExample = new DoctorScheduleExample();
+        DoctorScheduleExample.Criteria criteria3 = doctorScheduleExample.createCriteria();
+        criteria3.andDidEqualTo(did);
+        List<DoctorSchedule> allDoctorScheduleByExample = doctorScheduleService.getAllDoctorScheduleByExample(doctorScheduleExample);
+
+        model.addAttribute("allDoctorSchedule",allDoctorScheduleByExample);
+        return "qt/Doctorxiangqing";
+
+    }
 }
