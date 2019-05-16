@@ -32,6 +32,25 @@ public class Number implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Override
+    public String toString() {
+        return "Number{" +
+                "nuid=" + nuid +
+                ", data='" + data + '\'' +
+                ", count=" + count +
+                ", ilid=" + ilid +
+                ", illness=" + illness +
+                ", did=" + did +
+                ", doctor=" + doctor +
+                ", suid=" + suid +
+                ", suffer=" + suffer +
+                ", state='" + state + '\'' +
+                ", time=" + time +
+                ", descr='" + descr + '\'' +
+                ", remarks='" + remarks + '\'' +
+                '}';
+    }
+
     public Illness getIllness() {
         return illness;
     }

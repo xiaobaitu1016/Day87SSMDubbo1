@@ -23,7 +23,7 @@
     <table class="layui-table" style="text-align: center;margin-top: 50px">
         <thead>
             <tr>
-                <th colspan="4"><center><h3><b>挂号信息详情</b></h3></center></th>
+                <th colspan="4"><center><h3><b>${numberCur.suffer.suname}&nbsp;挂号信息详情</b></h3></center></th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,44 @@
                 <td><b>患者编号：</b></td>
                 <td>SU${numberCur.suid+10000}</td>
                 <td><b>患者姓名：</b></td>
-                <td>${numberCur.suffer.suname}</td>
+                <td width="350px">${numberCur.suffer.suname}</td>
+            </tr>
+            <tr>
+                <td><b>患者性别：</b></td>
+                <td>${numberCur.suffer.sex}</td>
+                <td><b>患者年龄：</b></td>
+                <td>${numberCur.suffer.age}</td>
+            </tr>
+            <tr>
+                <td><b>联系电话：</b></td>
+                <td>${numberCur.suffer.phone}</td>
+                <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+                <td><b>挂号科室：</b></td>
+                <td>${numberCur.doctor.departmentsSmall.dsname}</td>
+                <td><b>挂号医师：</b></td>
+                <td>${numberCur.doctor.dname}</td>
+            </tr>
+            <tr>
+                <td><b>挂号时间：</b></td>
+                <td><fmt:formatDate value="${numberCur.time}" pattern="yyyy年MM月dd日 HH:mm" /></td>
+                <td><b>排号数：</b></td>
+                <td>${numberCur.count}</td>
+            </tr>
+            <tr>
+                <td><b>所患疾病：</b></td>
+                <td>${numberCur.illness.ilname}</td>
+                <td><b>就诊状态：</b></td>
+                <td>${numberCur.state}</td>
+            </tr>
+            <tr>
+                <td><b>挂号描述：</b></td>
+                <td colspan="3">${numberCur.descr}</td>
+            </tr>
+            <tr>
+                <td><b>备注：</b></td>
+                <td colspan="3">${numberCur.remarks}</td>
             </tr>
             <tr>
                 <td colspan="4">

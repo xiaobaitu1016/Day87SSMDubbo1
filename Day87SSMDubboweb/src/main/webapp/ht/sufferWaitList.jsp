@@ -87,7 +87,7 @@
                 ,{field:'count', title: '排号数',align: 'center', sort: true}
                 ,{field:'did', title: '挂号科室',templet:"<div>{{d.doctor.departmentsSmall.dsname}}</div>",sort: true,align: 'center' }
                 ,{field:'did', title: '挂号医师',templet:"<div>{{d.doctor.dname}}</div>",align: 'center', sort: true}
-                ,{field:'time', title: '挂号时间',templet:"<div>{{layui.util.toDateString(d.time, 'yyyy年MM月dd日 HH:mm')}}</div>",align: 'center', sort: true}
+                ,{field:'time', title: '挂号时间',templet:"<div>{{layui.util.toDateString(d.time, 'yyyy年MM月dd日 HH:mm')}}</div>",align: 'center', sort: true,width:230}
                 ,{field:'state', title: '就诊状态',align: 'center', sort: true}
                 ,{title: '操作', templet:"", align: 'center', toolbar: '#barDemo'}
 
@@ -117,6 +117,10 @@
                             curr: 1
                         }
                     });
+                });
+
+                $("#addSuffer").on("click",function () {
+                    location.href="/toHtSufferWaitAdd";
                 });
 
                 $("#getBack").on("click",function () {
