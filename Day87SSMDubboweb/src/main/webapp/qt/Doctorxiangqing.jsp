@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>医生简介</title>
@@ -80,6 +81,7 @@
     </div>
 </div>
 
+
 <!--导航e-->
 <script type="text/javascript">
 
@@ -93,69 +95,16 @@
     })();
     var loginReturnUrl=document.location.href;
     function jumpLogin(){
-        var ReturnUrl="http://passport.mingyihui.net/login_pc.html?ReturnUrl="+loginReturnUrl;
+        var ReturnUrl=""+loginReturnUrl;
         window.location.href=ReturnUrl;
     }
     function jumpRegister(){
-        var ReturnUrl="http://passport.mingyihui.net/login_pc.html?ReturnUrl="+loginReturnUrl;
+        var ReturnUrl=""+loginReturnUrl;
         window.location.href=ReturnUrl;
     }
-    allCitys='';
-    hotCitys='';
-    $(document).ready(function() {
-        $.ajax({
-            url:"http://www.mingyihui.net/api_doctorsite.php?mode=getLoginUserInfo",
-            type:'post',
-            dataType:'json',
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-            success:function(data){
-                if(data.islogin==1){
-                    if(data.userinfo['kind']==1&&data.userinfo['ddid']>0){
-                        getDoctorReplys();
-                        $('#isLogin').children('p').html('你好,'+data.userinfo.truename+'医生，欢迎回到名医汇！');
-                    }else{
-                        if(data.userinfo.truename!=''&&data.userinfo.truename!=null){
-                            $('#isLogin').children('p').html('你好,'+data.userinfo.truename+',欢迎回到名医汇！');
-                        }else{
-                            $('#isLogin').children('p').html('你好,欢迎回到名医汇！');
-                        }
-                    }
-                    $('#isLogin').show();
-                    $('#topRight').prepend('<li class="fl"><a href="http://www.mingyihui.net/member/member_info.html" title="个人中心">个人中心</a> </li><li class="fl"><a href="javascript:;" id="btnLogout" title="退出">退出</a> </li>');
-                }else{
-                    $('#notLogin').show();
-                }
-            }
 
-        })
-
-        function getDoctorReplys(){
-            $.ajax({
-                url: "http://www.mingyihui.net/api_doctorsite.php?mode=getDoctorMsg",
-                type:'post',
-                dataType:'json',
-                xhrFields: {
-                    withCredentials: true
-                },
-                crossDomain: true,
-                success:function(data){
-                    var doctordomain=data.doctordomain;
-                    var unreplynums=data.unreplynums;
-                    if(doctordomain!=''&&unreplynums!=''){
-                        $('#doctorMsgBox').attr('href',data.doctordomain+'/service.html?replystatus=2');
-                        $('#unreplynums').html(unreplynums);
-                        $('#doctorMsgBox').show();
-                    }
-                }
-            })
-        }
-
-    })
 </script>
-<!--导航e-->
+
 <!--搜索栏-->
 <div class="w1200">
     <div class="H_logo fl fnone">
@@ -216,13 +165,16 @@
         <div class="clr"></div>
     </div>
     <!--面包屑-->
-    <div class="crumbs w1200"><a href="/qt/index.jsp">西京医院</a> &gt <a href="">心脏内科</a> &gt <a href="">吕安林</a> &gt 概览 </div>
+    <c:forEach items="${Doctor}" var="d">
+    <div class="crumbs w1200"><a href="/qt/index.jsp">西京医院</a> &gt <a href="">${d.departmentsSmall.dsname}</a> &gt <a href="">${d.dname}</a></div>
     <div class="doctor_details w1200">
         <div class="title_h1">
-            <h1 class="doctor_title">吕安林</h1>
+            <h1 class="doctor_title">${d.dname}</h1>
             <!-- <span class="doctor_titles">主任医师,副教授</span> -->
         </div>
         <!--左边东院科室列表-->
+
+
         <div class="section_list_left left">
             <ul class="section_nav clearfix">
                 <li> <a class="hover" href="/doctor_225702.html" title="概览" target="_self">概览</a> </li>
@@ -231,21 +183,20 @@
             </ul>
             <!--面包屑结束-->
             <!--概览-->
-            <div class="details_top clearfix"> <img src="" alt="" />
+            <div class="details_top clearfix"> <img src="http://photo.orsoon.com/180610/EPS-180610_425/manyYFHNX9_small.jpg" alt="" />
                 <div class="details_contant fr">
                     <div class="w100 clearfix"> <span>坐诊科室:</span>
-                        <p class="overview_p"> <a href="/hospital_1302/department_399.html">西京医院心脏内科</a>
+                        <p class="overview_p"> <a href="/hospital_1302/department_399.html">${d.departmentsSmall.dsname}</a>
 
                             <a class="hospital_guahao" href="" title="西京医院预约挂号"> 西京医院预约挂号 </a>
                             <a class="hospital_guahao" href="" title="价格"> 9.99元 </a>
                         </p>
                     </div>
                     <div class="w100 clearfix"> <span>擅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长:</span>
-                        <p class="overview_p"> 高难复杂冠心病治疗，先天性心脏病介入诊治，起搏器治疗，外周血管疾病，心力衰竭和高血压诊治，动脉粥样硬化等 </p>
+
+                        <p class="overview_p"><c:forEach items="${d.doctorIllnessList}" var="s">${s.illness}</c:forEach> </p>
                     </div>
-                    <div class="w100 clearfix"> <span>执业经历:</span>
-                        <p class="overview_p"> 吕安林，男，主任医师，硕士研究生导师，科副主任，专业诊疗范围：1、冠心病；先天性心脏病2、心律失常起.. <a href="/doctor_225702/index.html">详细>></a> </p>
-                    </div>
+
                     <div class="registration left">
 
                         <a href="javascript:showLoginbox('http://www.mingyihui.net/service/choose_225702.html');" target="_self"  class="registration_a right on"  onclick='$.get("/api/stat/statKey2/clickPcDoctorIndexGuahao/0/0");'>预约挂号</a>
@@ -266,47 +217,213 @@
             <div class="out_call">
                 <h3>出诊时间</h3>
                 <table border="0">
-                    <tr>
-                        <th>日期</th>
-                        <th>星期一</th>
-                        <th>星期二</th>
-                        <th>星期三</th>
-                        <th>星期四</th>
-                        <th>星期五</th>
-                        <th>星期六</th>
-                        <th>星期日</th>
-                    </tr>
-                    <tr>
-                        <td class="color_title">上午</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="color_title">下午</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>专家门诊</td>
-                    </tr>
-                    <tr>
-                        <td class="color_title">夜间</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                </table>
+
+                        <tr>
+                            <th>时间</th>
+                            <th>周一</th>
+                            <th>周二</th>
+                            <th>周三</th>
+                            <th>周四</th>
+                            <th>周五</th>
+
+                        </tr>
+
+                        <tr >
+                            <td><span>上午1</span></td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 1 && s.whichclass == 1}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 2 && s.whichclass == 1}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 3 && s.whichclass == 1}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 4 && s.whichclass == 1}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 5 && s.whichclass == 1}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span>上午2</span></td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 1 && s.whichclass == 2}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 2 && s.whichclass == 2}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 3 && s.whichclass == 2}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 4 && s.whichclass == 2}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 5 && s.whichclass == 2}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span>下午1</span></td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 1 && s.whichclass == 3}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 2 && s.whichclass == 3}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 3 && s.whichclass == 3}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 4 && s.whichclass == 3}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 5 && s.whichclass == 3}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span>下午2</span></td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 1 && s.whichclass == 4}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 2 && s.whichclass == 4}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 3 && s.whichclass == 4}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 4 && s.whichclass == 4}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                            <td>&nbsp;
+                                <c:forEach var="s" items="${allDoctorSchedule}">
+                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                        <c:if test="${s.weekday == 5 && s.whichclass == 4}">
+                                            出诊
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                            </td>
+                        </tr>
+                    </table>
             </div>
 
             <!--出诊时间表end-->
@@ -367,6 +484,7 @@
 
             </div>
         </div>
+        </c:forEach>
         <div class="section_list_right right">
             <div id="advDoctorRight" style="margin-bottom: 20px; width: 240px;">
             </div>
@@ -435,5 +553,48 @@
 
     </div>
 </div>
+<!-- 登陆页面start -->
+<link rel="stylesheet" href="http://www.mingyihui.net/templates/skins/red2017/css/login.css?v=20160924"/>
+<link rel="stylesheet" href="http://www.mingyihui.net/templates/skins/red2017/css/iconfont.css?v=20171017"/>
+<link rel="stylesheet" href="http://www.mingyihui.net/templates/skins/red2017/css/doctorreg.css?v=20171017"/>
+<link rel="stylesheet" href="http://www.mingyihui.net/templates/skins/red2017/css/login1.css?v=20181129"/>
+<!-- 弹窗登录s -->
+<div class="siginPopul" id="windowLogin" style="display: none">
+    <div class="regfetMainPopul">
+        <div class="regfetMainPoapulTitle">
+            <h3>账户密码登录</h3>
+            <span onclick="closeLoginbox();">&times;</span>
+        </div>
+        <div class="regfetMainPopulPd">
+            <div class="retfetInp">
+                 <span class="retfrtIcon">
+                         <svg class="icon" aria-hidden="true">
+                             <use xlink:href="#icon-touxiang"></use>
+                         </svg>
+                     </span>
+                <input type="text" name="" id="identity" value="" placeholder="登录账号">
+            </div>
+            <div class="retfetInp">
+                 <span class="retfrtIcon">
+                         <svg class="icon" aria-hidden="true">
+                             <use xlink:href="#icon-mima"></use>
+                         </svg>
+                     </span>
+                <input type="password" name="" id="logPwd" value="" placeholder="密码">
+            </div>
+            <button type="" id="windowLoginBtn" class="myhregit">登录</button>
+            <div class="retgifLine">
+                <a href="http://www.mingyihui.net/member/member_tomod.html">忘记密码</a>
+                <a href="http://passport.mingyihui.net/reg.html?refer=www&ReturnUrl=http://www.mingyihui.net/guahao/hospital_1302/">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-jiantou-you-shixin-yuanxing"></use>
+                    </svg>
+                    <p>免费注册</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

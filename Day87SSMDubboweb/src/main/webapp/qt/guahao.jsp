@@ -24,6 +24,7 @@
     <meta name="mobile-agent" content="format=html5;url=http://m.mingyihui.net/guahao/hospital_1302/">
     <meta name="mobile-agent" content="format=xhtml;url=http://m.mingyihui.net/guahao/hospital_1302/">
     <link rel="alternate" media="only screen and (max-width: 320px)" href="http://m.mingyihui.net/guahao/hospital_1302/">
+
 </head>
 <link href="http://www.mingyihui.net/templates/skins/red2017/css/bootstrap.css" rel="stylesheet">
 <link href="http://www.mingyihui.net/templates/skins/red2017/css/H_05.css" rel="stylesheet" type="text/css" />
@@ -37,6 +38,30 @@
 <div class="g_top">
     <div class="w1200 g_top_contant" >
         <div class="w1200 g_top_contant" >
+            <!--头部-->
+            <!--已登录-->
+            <div class="fl"  id="isLogin">
+                <p class="welcome fl" style="margin-top: 14px; border: none;"></p>
+                <div class="welcome fl" style="margin: 14px 0 0 10px; display: none">
+                    <a href="javascript:;" id="doctorMsgBox"><i class="consulInfor"></i><p>温馨提示:您有<span style="color:red;" id="unreplynums">0</span>条待回复的咨询，立即查看></p></a>
+                </div>
+                <div class="clr"></div>
+            </div>
+            <!--未登录-->
+            <div class="fl"  id="notLogin">
+                <ul class="login-registration">
+                    <li class="on popup_li"> <a href="" id="bLogin" onclick="ShowLoginText()" target="_self">登录</a> </li>
+                    <li class="on zhuce"> <a href="javascript:;" target="_self">注册</a> </li>
+                </ul>
+                <ul class="login-registration">
+                    <li class="on popup_li">
+                        <span class="top_nav_icon"></span>
+                    </li>
+                    <li class="on zhuce"> <a href="javascript:showDoctorRegister();" target="_self">医生注册</a> </li>
+                </ul>
+                <div class="clr"></div>
+            </div>
+
 
             <div class="fr H_top_nav fnone">
                 <ul id="topRight">
@@ -55,6 +80,8 @@
     </div>
 </div>
 
+
+
 <!--导航e-->
 <script type="text/javascript">
 
@@ -66,69 +93,6 @@
             $(this).find(".jsnavBox").css("display", "none");
         });
     })();
-    var loginReturnUrl=document.location.href;
-    function jumpLogin(){
-        var ReturnUrl="http://passport.mingyihui.net/login_pc.html?ReturnUrl="+loginReturnUrl;
-        window.location.href=ReturnUrl;
-    }
-    function jumpRegister(){
-        var ReturnUrl="http://passport.mingyihui.net/login_pc.html?ReturnUrl="+loginReturnUrl;
-        window.location.href=ReturnUrl;
-    }
-    allCitys='';
-    hotCitys='';
-    $(document).ready(function() {
-        $.ajax({
-            url:"http://www.mingyihui.net/api_doctorsite.php?mode=getLoginUserInfo",
-            type:'post',
-            dataType:'json',
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-            success:function(data){
-                if(data.islogin==1){
-                    if(data.userinfo['kind']==1&&data.userinfo['ddid']>0){
-                        getDoctorReplys();
-                        $('#isLogin').children('p').html('你好,'+data.userinfo.truename+'医生，欢迎回到名医汇！');
-                    }else{
-                        if(data.userinfo.truename!=''&&data.userinfo.truename!=null){
-                            $('#isLogin').children('p').html('你好,'+data.userinfo.truename+',欢迎回到名医汇！');
-                        }else{
-                            $('#isLogin').children('p').html('你好,欢迎回到名医汇！');
-                        }
-                    }
-                    $('#isLogin').show();
-                    $('#topRight').prepend('<li class="fl"><a href="http://www.mingyihui.net/member/member_info.html" title="个人中心">个人中心</a> </li><li class="fl"><a href="javascript:;" id="btnLogout" title="退出">退出</a> </li>');
-                }else{
-                    $('#notLogin').show();
-                }
-            }
-
-        })
-
-        function getDoctorReplys(){
-            $.ajax({
-                url: "http://www.mingyihui.net/api_doctorsite.php?mode=getDoctorMsg",
-                type:'post',
-                dataType:'json',
-                xhrFields: {
-                    withCredentials: true
-                },
-                crossDomain: true,
-                success:function(data){
-                    var doctordomain=data.doctordomain;
-                    var unreplynums=data.unreplynums;
-                    if(doctordomain!=''&&unreplynums!=''){
-                        $('#doctorMsgBox').attr('href',data.doctordomain+'/service.html?replystatus=2');
-                        $('#unreplynums').html(unreplynums);
-                        $('#doctorMsgBox').show();
-                    }
-                }
-            })
-        }
-
-    })
 </script>
 <!--导航e-->
 <!--搜索栏-->
@@ -316,7 +280,7 @@
 
     <div class="illness_list clearfix H_link"> <span class="list_h2">一级科室：</span>
         <ul class="list_ul list_list clearfix">
-            <li class="  on"><a href="" target="_self">全部</a></li>
+            <li class="  on"><a href="/guahao" target="_self">全部</a></li>
             <c:forEach items="${small}" var="s">
                <c:if test="${s.dbid != 4}" >
                    <li class="  "><a href="/getOneSmallId?dsid=${s.dsid}" target="_self">${s.dsname}</a></li>
@@ -326,7 +290,7 @@
         <a class="unfold border H_open" href="javascript:void(0);" target="_self"> 展开 </a> <a class="unfold border H_close H_contraction" href="javascript:;" target="_self"> 收缩</a>  </div>
     <div class="illness_list clearfix  H_link1"> <span class="list_h2"> 擅长疾病： </span>
         <ul class="list_ul clearfix">
-            <li class="  on"> <a href="" target="_self">全部</a> </li>
+            <li class="  on"> <a href="/guahao" target="_self">全部</a> </li>
             <c:forEach items="${allIllness}" var="a">
                 <li class=" "> <a href="/getOneSmallId?dsid=${a.dsid}" target="_self">${a.ilname}</a> </li>
             </c:forEach>
@@ -350,9 +314,9 @@
             <c:forEach var="d" items="${allDoctor}" >
                  <c:if test="${d.departmentsSmall.dbid != 4}">
                 <ul>
-                    <li> <a href="/qt/Doctorxiangqing.jsp"> <img src="http://photo.orsoon.com/180610/EPS-180610_425/manyYFHNX9_small.jpg" class="fl H_p" />
+                    <li> <a href="Doctorxiangqing?did=${d.did}"> <img src="http://photo.orsoon.com/180610/EPS-180610_425/manyYFHNX9_small.jpg" class="fl H_p" />
                     </a>
-                        <div class="H_d_down H_d fl"> <a href="/qt/Doctorxiangqing.jsp">
+                        <div class="H_d_down H_d fl"> <a href="Doctorxiangqing?did=${d.did}">
                             <h3 class="fl">${d.dname}</h3></a>
                             <Span class="fl doctor_titles">(${d.doctorRole.drname})
                                 </Span> <small class="clr">${d.departmentsSmall.dsname}</small>
@@ -684,6 +648,8 @@
 
     </div>
 </div>
+
+
 
 
 </body>
