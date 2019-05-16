@@ -24,4 +24,14 @@ public class NumberServiceImpl implements INumberService {
     public boolean addNumber(Number number) {
         return numberMapper.insert(number) > 0;
     }
+
+    @Override
+    public Number getNumberByNuid(int nuid) {
+        return numberMapper.selectByPrimaryKey(nuid);
+    }
+
+    @Override
+    public boolean updateNumberByNuid(Number number) {
+        return numberMapper.updateByPrimaryKey(number) > 0;
+    }
 }

@@ -10,4 +10,6 @@ public interface ISufferService {
     List<Suffer> getAllSufferByExample(SufferExample example);
 
     List<Suffer> getAllSufferByPageExample(SufferExample example,int curPage,int pageSize);
+
+    boolean updateSufferBySuid(Suffer suffer);
 }

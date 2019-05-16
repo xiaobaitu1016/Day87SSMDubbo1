@@ -333,6 +333,22 @@ public class HchSufferController {
         String remarks = request.getParameter("remarks");
         String date = time.substring(0,10);
 
+        DoctorExample doctorExample = new DoctorExample();
+        DoctorExample.Criteria criteria1 = doctorExample.createCriteria();
+        criteria1.andDidEqualTo(did);
+        List<Doctor> allDoctor = doctorService.getAllDoctor(doctorExample);
+        Doctor doctor = allDoctor.get(0);
+
+        SufferExample sufferExample = new SufferExample();
+        SufferExample.Criteria criteria = sufferExample.createCriteria();
+        criteria.andSuidEqualTo(suid);
+        List<Suffer> allSufferByExample = sufferService.getAllSufferByExample(sufferExample);
+        Suffer suffer = allSufferByExample.get(0);
+        double price = suffer.getPrice()-doctor.getDoctorRole().getPrice();
+        suffer.setPrice(price);
+
+        sufferService.updateSufferBySuid(suffer);
+
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date timeFormat = format.parse(time);
 
@@ -352,4 +368,111 @@ public class HchSufferController {
 
         return b;
     }
+
+    @GetMapping("/toHtSufferMyWaitList")
+    public String toHtSufferMyWaitList(Model model,HttpServletRequest request){
+        Doctor curDoctor = (Doctor) request.getSession().getAttribute("curDoctor");
+
+        IllnessExample illnessExample = new IllnessExample();
+        IllnessExample.Criteria criteria = illnessExample.createCriteria();
+        criteria.andDsidEqualTo(curDoctor.getDsid());
+
+        model.addAttribute("allIllness",iIllnessService.getAllIllnessByExample(illnessExample));
+        return "ht/sufferMyWaitList";
+    }
+
+    @PostMapping("/htAllMySufferWait")
+    @ResponseBody
+    public LayuiUtil<Number> htAllMySufferWait(HttpServletRequest request) throws ParseException {
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = Integer.parseInt(request.getParameter("limit"));
+
+        String ilids = request.getParameter("ilid");
+        String startTime = request.getParameter("startTime");
+        String endTime = request.getParameter("endTime");
+        Doctor curDoctor = (Doctor) request.getSession().getAttribute("curDoctor");
+
+        NumberExample numberExample = new NumberExample();
+        NumberExample.Criteria criteria = numberExample.createCriteria();
+        Date date = new Date();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat format1 = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+        String datenow = format.format(date);
+
+        criteria.andDataEqualTo(datenow);
+
+        criteria.andDidEqualTo(curDoctor.getDid());
+
+        if ((startTime != null && !"".equals(startTime)) || (endTime != null && !"".equals(endTime))){
+            if((startTime == null || "".equals(startTime)) && (endTime != null && !"".equals(endTime))){
+                String substring = endTime.substring(0, 8);
+                String s = datenow + " " + substring;
+                Date parse = format1.parse(s);
+
+                criteria.andTimeLessThan(parse);
+            }else if((startTime != null && !"".equals(startTime)) && (endTime == null || "".equals(endTime))){
+                String substring = startTime.substring(0, 8);
+                String s = datenow + " " + substring;
+                Date parse = format1.parse(s);
+                criteria.andTimeGreaterThan(parse);
+            }else if((startTime != null && !"".equals(startTime)) && (endTime != null && !"".equals(endTime))){
+                String substring1 = startTime.substring(0, 8);
+                String substring2 = endTime.substring(0, 8);
+                String send = datenow + " " + substring2;
+                String sstart = datenow + " " + substring1;
+                Date start = format1.parse(sstart);
+                Date end = format1.parse(send);
+
+                criteria.andTimeBetween(start,end);
+            }
+        }
+
+
+        List<Number> allNumberByExample = numberService.getAllNumberByExample(numberExample);
+
+        PageUtil<Number> pageUtil = new PageUtil<>();
+
+        List<Number> numberList = pageUtil.pageUtil(allNumberByExample, page, limit);
+
+        LayuiUtil<Number> layuiUtil = new LayuiUtil<>();
+
+        LayuiUtil<Number> numberLayuiUtil = layuiUtil.toLayuiList(numberList);
+        numberLayuiUtil.setCount(allNumberByExample.size());
+
+        return numberLayuiUtil;
+    }
+
+    @PostMapping("/htSufferWaitJiezhen")
+    @ResponseBody
+    public boolean htSufferWaitJiezhen(HttpServletRequest request){
+        int nuid = Integer.parseInt(request.getParameter("nuid"));
+        Number numberByNuid = numberService.getNumberByNuid(nuid);
+
+        numberByNuid.setState("已就诊");
+
+        boolean b = numberService.updateNumberByNuid(numberByNuid);
+
+        return b;
+    }
+
+    @GetMapping("/toHtMySufferWaitAdd")
+    public String toHtMySufferWaitAdd(Model model,HttpServletRequest request){
+        model.addAttribute("allSuffer",sufferService.getAllSufferByExample(null));
+
+        model.addAttribute("allDbig",departmentsBigService.getAllDepartmentsBigByExample(null));
+
+        model.addAttribute("allDoctor",doctorService.getAllDoctor(null));
+
+
+
+        Doctor curDoctor = (Doctor) request.getSession().getAttribute("curDoctor");
+        List<Illness> illnessList = curDoctor.getDepartmentsSmall().getIllnessList();
+
+        model.addAttribute("allIllness",curDoctor.getDepartmentsSmall().getIllnessList());
+
+        model.addAttribute("count11",illnessList.size()+1);
+
+        return "ht/sufferMyWaitAdd";
+    }
+
 }

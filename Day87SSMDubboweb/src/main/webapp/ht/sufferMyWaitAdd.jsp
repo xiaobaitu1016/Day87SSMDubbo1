@@ -71,26 +71,12 @@
             <tr>
                 <td><b>挂号科室：</b></td>
                 <td>
-                    <select id="dsmall" lay-filter="dsmall" type="text">
-                        <option></option>
-                        <c:forEach var="d" items="${allDbig}">
-                            <c:if test="${d.dbid != 4}">
-                                <optgroup label="${d.dbname}">
-                                    <c:forEach items="${d.departmentsSmallList}" var="s">
-                                        <option value="${s.dsid}">${s.dsname}</option>
-                                    </c:forEach>
-                                </optgroup>
-                            </c:if>
-                        </c:forEach>
-                    </select>
+                    <input lay-verify="required" value="${curDoctor.departmentsSmall.dsname}" readonly="readonly" type="text" autocomplete="on" class="layui-input">
                 </td>
                 <td><b>挂号医师：</b></td>
                 <td>
                     <select id="doctor" lay-filter="doctor" lay-verify="required" type="text">
-                        <option></option>
-                        <c:forEach var="d" items="${allDoctor}">
-                            <option value="${d.did}">${d.dname}</option>
-                        </c:forEach>
+                        <option value="${curDoctor.did}">${curDoctor.dname}</option>
                     </select>
                 </td>
             </tr>
@@ -101,7 +87,7 @@
                 </td>
                 <td><b>排号数：</b></td>
                 <td>
-                    <input id="count" lay-verify="required" readonly="readonly" type="text" autocomplete="on" class="layui-input">
+                    <input id="count" value="${count11}" lay-verify="required" readonly="readonly" type="text" autocomplete="on" class="layui-input">
                 </td>
             </tr>
             <tr>
@@ -176,9 +162,9 @@
 
                 if (suid.length == 1 && did.length == 1 && count.length == 1){
                     $.post("/sufferWaitAddSubmit",{suid:suid,did:did,ilid:ilid
-                    ,time:time,state:state,count:count,descrs:descrs,remarks:remarks},function (data) {
+                        ,time:time,state:state,count:count,descrs:descrs,remarks:remarks},function (data) {
                         if (data){
-                            location.href="/toHtSufferWaitList";
+                            location.href="/toHtSufferMyWaitList";
                         }
                     });
                 }
