@@ -12,4 +12,6 @@ public interface ISufferService {
     List<Suffer> getAllSufferByPageExample(SufferExample example,int curPage,int pageSize);
 
     boolean updateSufferBySuid(Suffer suffer);
+
+    boolean login(Suffer suffer);
 }

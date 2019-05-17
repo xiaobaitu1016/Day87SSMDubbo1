@@ -5,7 +5,7 @@
     <id column="did" property="did" jdbcType="INTEGER" />
     <id column="rid" property="rid" jdbcType="INTEGER" />
     <result column="remarks" property="remarks" jdbcType="VARCHAR" />
-    <association property="rolesList" column="rid" select="com.qf.mapper.RolesMapper.selectByPrimaryKey" />
+    <association property="roles" column="rid" select="com.qf.mapper.RolesMapper.selectByPrimaryKey" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

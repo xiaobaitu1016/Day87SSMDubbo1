@@ -88,13 +88,8 @@
                     <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 医生信息</span></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                            <a href="javascript:;" kit-target data-options="{url:'toHtDoctorList',icon:'&#xe6c6;',title:'医生信息列表',id:'4'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 医生信息列表</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
-                                <i class="fa fa-user" aria-hidden="true"></i><span> 医生信息修改</span>
-                            </a>
                         </dd>
                         <dd>
                             <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'>

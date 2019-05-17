@@ -39,4 +39,23 @@ public class SufferServiceImpl implements ISufferService {
     public boolean updateSufferBySuid(Suffer suffer) {
         return sufferMapper.updateByPrimaryKey(suffer) > 0;
     }
+
+    @Override
+    public boolean login(Suffer suffer) {
+        SufferExample sufferExample = new SufferExample();
+        SufferExample.Criteria criteria = sufferExample.createCriteria();
+
+        criteria.andSuidEqualTo(suffer.getSuid());
+        criteria.andPasswordEqualTo(suffer.getPassword());
+
+        List<Suffer> suffers = sufferMapper.selectByExample(sufferExample);
+
+        if (suffers == null){
+            return false;
+        }else {
+            return true;
+        }
+
+
+    }
 }

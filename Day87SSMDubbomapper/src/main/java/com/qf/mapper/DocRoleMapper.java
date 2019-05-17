@@ -19,7 +19,7 @@ public interface DocRoleMapper {
 
     List<DocRole> selectByExample(DocRoleExample example);
 
-    List<DocRole> selectByDid(Integer did);
+    DocRole selectByDid(Integer did);
 
     DocRole selectByPrimaryKey(DocRoleKey key);
 

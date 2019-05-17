@@ -20,4 +20,9 @@ public class DepartmentsSmallServiceImpl implements IDepartmentsSmallService {
 
         return departmentsSmallMapper.selectByExample(example);
     }
+
+    @Override
+    public DepartmentsSmall getDepartmentsSmallByDsid(int dsid) {
+        return departmentsSmallMapper.selectByPrimaryKey(dsid);
+    }
 }

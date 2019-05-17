@@ -8,16 +8,16 @@ public class DocRoleKey implements Serializable {
 
     private Integer rid;
 
-    private List<Roles> rolesList;
+    private Roles roles;
 
     private static final long serialVersionUID = 1L;
 
-    public List<Roles> getRolesList() {
-        return rolesList;
+    public Roles getRoles() {
+        return roles;
     }
 
-    public void setRolesList(List<Roles> rolesList) {
-        this.rolesList = rolesList;
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 
     public Integer getDid() {

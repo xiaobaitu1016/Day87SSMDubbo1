@@ -9,5 +9,4 @@ public interface IDoctorService {
     Doctor login(Doctor doctor);
 
     List<Doctor> getAllDoctor(DoctorExample example);
-
 }

@@ -184,13 +184,13 @@ public class HchSufferController {
 
         List<Number> allNumberByExample = numberService.getAllNumberByExample(numberExample);
 
-        PageUtil<Number> pageUtil = new PageUtil<>();
-
-        List<Number> numberList = pageUtil.pageUtil(allNumberByExample, page, limit);
+        List<Number> allNumberByExamplePage = numberService.getAllNumberByExamplePage(numberExample, page, limit);
 
         LayuiUtil<Number> layuiUtil = new LayuiUtil<>();
 
-        LayuiUtil<Number> numberLayuiUtil = layuiUtil.toLayuiList(numberList);
+        LayuiUtil<Number> numberLayuiUtil = layuiUtil.toLayuiList(allNumberByExamplePage);
+
+        System.out.println(allNumberByExamplePage);
         numberLayuiUtil.setCount(allNumberByExample.size());
 
         return numberLayuiUtil;
@@ -470,7 +470,20 @@ public class HchSufferController {
 
         model.addAttribute("allIllness",curDoctor.getDepartmentsSmall().getIllnessList());
 
-        model.addAttribute("count11",illnessList.size()+1);
+        NumberExample numberExample = new NumberExample();
+        NumberExample.Criteria criteria = numberExample.createCriteria();
+
+        Date date = new Date();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String format1 = format.format(date);
+
+        criteria.andDataEqualTo(format1);
+        criteria.andDidEqualTo(curDoctor.getDid());
+
+        List<Number> numberList = new ArrayList<>();
+        numberList = numberService.getAllNumberByExample(numberExample);
+
+        model.addAttribute("count11",numberList.size()+1);
 
         return "ht/sufferMyWaitAdd";
     }

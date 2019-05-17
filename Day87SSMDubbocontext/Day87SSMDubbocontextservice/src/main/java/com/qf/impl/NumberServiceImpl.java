@@ -1,5 +1,7 @@
 package com.qf.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.qf.mapper.NumberMapper;
 import com.qf.pojo.Number;
 import com.qf.pojo.NumberExample;
@@ -18,6 +20,19 @@ public class NumberServiceImpl implements INumberService {
     @Override
     public List<Number> getAllNumberByExample (NumberExample example) {
         return numberMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<Number> getAllNumberByExamplePage(NumberExample example, int page, int limt) {
+        PageHelper.startPage(page,limt);
+
+        List<Number> numberList = numberMapper.selectByExample(example);
+
+        PageInfo<Number> numberPageInfo = new PageInfo<>(numberList);
+
+        List<Number> list = numberPageInfo.getList();
+
+        return list;
     }
 
     @Override

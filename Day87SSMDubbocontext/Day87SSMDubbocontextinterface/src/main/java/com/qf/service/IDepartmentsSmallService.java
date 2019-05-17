@@ -9,4 +9,6 @@ import java.util.List;
 public interface IDepartmentsSmallService {
 
     List<DepartmentsSmall> getAllDepartmentsSmallByExample(DepartmentsSmallExample example);
+
+    DepartmentsSmall getDepartmentsSmallByDsid(int dsid);
 }

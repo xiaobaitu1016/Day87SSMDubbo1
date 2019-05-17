@@ -9,5 +9,4 @@ public interface IDepartmentsBigService {
 
     List<DepartmentsBig> getAllDepartmentsBigByExample(DepartmentsBigExample example);
 
-
 }
