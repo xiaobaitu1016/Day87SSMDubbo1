@@ -39,12 +39,20 @@
 <div class="g_top">
     <div class="w1200 g_top_contant" >
         <div class="w1200 g_top_contant" >
-            <!--头部-->
+            <c:if test="${suname == null}">
             <div class="fl"  >
                 <ul class="login-registration">
                     <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
                     <li class="on zhuce"> <a href="qt/zhuce.jsp" >注册</a> </li>
                 </ul>
+                </c:if><c:if test="${suname != null}">
+                <div class="fl"  >
+                    <ul class="login-registration">
+                        <li class="on "> <a href=>${suname}</a> </li>
+                        <li class="on "> <a href="/loginOut" >退出</a> </li>
+                        <li class="on zhuce"> <a href="qt/zhuce.jsp" >个人中心</a> </li>
+                    </ul>
+                    </c:if>
 
                 <div class="clr"></div>
             </div>
@@ -279,7 +287,7 @@
         <a class="unfold border H_open" href="javascript:void(0);" target="_self"> 展开 </a> <a class="unfold border H_close H_contraction" href="javascript:;" target="_self"> 收缩</a>  </div>
     <div class="illness_list clearfix H_link"> <span class="list_h2">二级科室：</span>
         <ul class="list_ul list_list clearfix">
-            <li class="  on"> <a href="http://www.mingyihui.net/guahao/hospital_1302/2.html" target="_self">全部</a> </li>
+            <li class="  on"> <a href="/guahao" target="_self">全部</a> </li>
 <c:forEach items="${small}" var="s">
     <c:if test="${s.dbid != 4}" >
             <li class=" "> <a href="/getOneSmallId?dbid=${s.dbid}" target="_self">${s.dsname}</a> </li>

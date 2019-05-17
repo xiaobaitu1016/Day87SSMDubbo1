@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -99,11 +100,26 @@ public class GuahaoController {
 
     }
     @PostMapping("/suffer")
-    public String login(Suffer suffer){
+    public String login(Suffer suffer,HttpSession httpSession,Model model){
         boolean b = sufferService.login(suffer);
         System.out.println(b);
 
+        if (b){
+            httpSession.setAttribute("suname",suffer.getSuname());
 
-        return null;
+            return "qt/index" ;
+        }else {
+
+            return "qt/denglu";
+        }
+
+
+
+    }
+    @GetMapping("/loginOut")
+    public String loginOut(HttpSession httpSession){
+
+        httpSession.removeAttribute("suname");
+        return "qt/index";
     }
 }
