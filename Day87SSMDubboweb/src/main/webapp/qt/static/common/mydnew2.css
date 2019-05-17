@@ -1,0 +1,59 @@
+.mydnew_break {
+	PADDING-BOTTOM: 11px; LINE-HEIGHT: 18px; BACKGROUND-COLOR: #fff; MARGIN: 0px auto; PADDING-LEFT: 0px; WIDTH: 960px; PADDING-RIGHT: 0px; PADDING-TOP: 12px
+}
+.mydnew_break SPAN {
+	COLOR: #666
+}
+.mydnew_break A {
+	COLOR: #0b3b8b
+}
+.mydnew_break A:hover {
+	COLOR: #0b3b8b
+}
+.mydnew_sidel {
+	WIDTH: 170px; BORDER-TOP: #a4d7ca 1px solid; _display: inline
+}
+.mydnew_sidel_title {
+	width: 178px;
+	POSITION: relative
+}
+.mydnew_sidel_title H3 {
+	BORDER-BOTTOM: #a4d7ca 1px solid; BORDER-LEFT: #a4d7ca 1px solid; PADDING-BOTTOM: 0px; LINE-HEIGHT: 26px; PADDING-LEFT: 12px; PADDING-RIGHT: 0px; BACKGROUND: url(image/bg_change.gif) #ecfced repeat-x left top; HEIGHT: 26px; BORDER-TOP: #a4d7ca 1px; FONT-WEIGHT: bold; BORDER-RIGHT: #a4d7ca 1px solid; PADDING-TOP: 1px
+}
+.mydnew_sidel_title H3 A {
+	POSITION: relative; COLOR: #5b5b5b; TOP: 0px; RIGHT: auto; LEFT: 0px
+}
+.mydnew_sidel_title H3 A:hover {
+	COLOR: #009c74
+}
+.mydnew_sidel_title H3 A.current {
+	COLOR: #009c74
+}
+.mydnew_sidel_title A {
+	POSITION: absolute; TOP: 8px; RIGHT: 11px
+}
+.mydnew_sidel .my_href {
+	BORDER-BOTTOM: #a4d7ca 1px solid; BORDER-LEFT: #a4d7ca 1px solid; LINE-HEIGHT: 26px; WIDTH: 168px; BORDER-TOP: #a4d7ca 1px; BORDER-RIGHT: #a4d7ca 1px solid
+}
+.mydnew_sidel .my_content {
+	BORDER-BOTTOM: #a4d7ca 1px solid; BORDER-LEFT: #a4d7ca 1px solid; LINE-HEIGHT: 26px; WIDTH: 168px; BORDER-TOP: #a4d7ca 1px; BORDER-RIGHT: #a4d7ca 1px solid
+}
+.mydnew_sidel LI {
+	PADDING-LEFT: 13px
+}
+.mydnew_sidel .my_content {
+	width: 178px; 
+	BACKGROUND: none transparent scroll repeat 0% 0%
+}
+.mydnew_sidel LI A:hover {
+	COLOR: #009c74
+}
+.mydnew_sidel LI A.current {
+	COLOR: #009c74; FONT-WEIGHT: bold
+}
+.mydnew_sidel LI A.current:hover {
+	COLOR: #009c74; FONT-WEIGHT: bold
+}
+.mydnew_sidel LI A IMG {
+	POSITION: absolute; MARGIN-LEFT: 4px; TOP: 6px
+}

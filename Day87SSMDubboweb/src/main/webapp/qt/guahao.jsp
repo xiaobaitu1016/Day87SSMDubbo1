@@ -32,6 +32,7 @@
 <link href="http://www.mingyihui.net/templates/skins/red2017/css/prettify.css" rel="stylesheet">
 <link href="http://www.mingyihui.net/templates/skins/red2017/css/yuyue.css?v=20160924" rel="stylesheet">
 
+
 <body>
 <!--导航s-->
 <link rel="stylesheet" href="http://www.mingyihui.net/templates/skins/red2017/css/header.css?v=20171018"/>
@@ -39,26 +40,12 @@
     <div class="w1200 g_top_contant" >
         <div class="w1200 g_top_contant" >
             <!--头部-->
-            <!--已登录-->
-            <div class="fl"  id="isLogin">
-                <p class="welcome fl" style="margin-top: 14px; border: none;"></p>
-                <div class="welcome fl" style="margin: 14px 0 0 10px; display: none">
-                    <a href="javascript:;" id="doctorMsgBox"><i class="consulInfor"></i><p>温馨提示:您有<span style="color:red;" id="unreplynums">0</span>条待回复的咨询，立即查看></p></a>
-                </div>
-                <div class="clr"></div>
-            </div>
-            <!--未登录-->
-            <div class="fl"  id="notLogin">
+            <div class="fl"  >
                 <ul class="login-registration">
-                    <li class="on popup_li"> <a href="" id="bLogin" onclick="ShowLoginText()" target="_self">登录</a> </li>
-                    <li class="on zhuce"> <a href="javascript:;" target="_self">注册</a> </li>
+                    <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
+                    <li class="on zhuce"> <a href="qt/zhuce.jsp" >注册</a> </li>
                 </ul>
-                <ul class="login-registration">
-                    <li class="on popup_li">
-                        <span class="top_nav_icon"></span>
-                    </li>
-                    <li class="on zhuce"> <a href="javascript:showDoctorRegister();" target="_self">医生注册</a> </li>
-                </ul>
+
                 <div class="clr"></div>
             </div>
 
@@ -281,18 +268,33 @@
     <div class="illness_list clearfix H_link"> <span class="list_h2">一级科室：</span>
         <ul class="list_ul list_list clearfix">
             <li class="  on"><a href="/guahao" target="_self">全部</a></li>
-            <c:forEach items="${small}" var="s">
-               <c:if test="${s.dbid != 4}" >
-                   <li class="  "><a href="/getOneSmallId?dsid=${s.dsid}" target="_self">${s.dsname}</a></li>
-               </c:if>
-            </c:forEach>
+
+          <c:forEach items="${big}" var="b"  >
+              <c:if test="${b.dbid != 4}" >
+                   <li class="  "><a href="/getOneSmallId?dbid=${b.dbid}" target="_self">${b.dbname}</a></li>
+
+              </c:if>
+          </c:forEach>
         </ul>
         <a class="unfold border H_open" href="javascript:void(0);" target="_self"> 展开 </a> <a class="unfold border H_close H_contraction" href="javascript:;" target="_self"> 收缩</a>  </div>
+    <div class="illness_list clearfix H_link"> <span class="list_h2">二级科室：</span>
+        <ul class="list_ul list_list clearfix">
+            <li class="  on"> <a href="http://www.mingyihui.net/guahao/hospital_1302/2.html" target="_self">全部</a> </li>
+<c:forEach items="${small}" var="s">
+    <c:if test="${s.dbid != 4}" >
+            <li class=" "> <a href="/getOneSmallId?dbid=${s.dbid}" target="_self">${s.dsname}</a> </li>
+    </c:if>
+</c:forEach>
+        </ul>
+    </div>
+
     <div class="illness_list clearfix  H_link1"> <span class="list_h2"> 擅长疾病： </span>
         <ul class="list_ul clearfix">
             <li class="  on"> <a href="/guahao" target="_self">全部</a> </li>
-            <c:forEach items="${allIllness}" var="a">
-                <li class=" "> <a href="/getOneSmallId?dsid=${a.dsid}" target="_self">${a.ilname}</a> </li>
+            <c:forEach items="${small}" var="a">
+                <c:forEach items="${a.illnessList}" var="ai" >
+                <li class=" "> <a href="/getOneSmallId?dbid=${a.dbid}" target="_self">${ai.ilname}</a> </li>
+                </c:forEach>
             </c:forEach>
         </ul>
         <a class="unfold border H_open H_open1" href="javascript:void(0);" target="_self"> 展开 </a> <a class="unfold border H_close H_contraction1" href="javascript:;" target="_self"> 收缩 </a>  </div>
@@ -648,6 +650,9 @@
 
     </div>
 </div>
+
+
+
 
 
 

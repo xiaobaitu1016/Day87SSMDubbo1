@@ -192,7 +192,7 @@
                             <a class="hospital_guahao" href="" title="价格"> 9.99元 </a>
                         </p>
                     </div>
-                    <div class="w100 clearfix"> <span>擅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长:</span>
+                    <div class="w100 clearfix"> <span>擅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长:<c:forEach items="${d.departmentsSmall.illnessList}" var="dd">${dd.ilname}</c:forEach> 等... </span>
 
                         <p class="overview_p"><c:forEach items="${d.doctorIllnessList}" var="s">${s.illness}</c:forEach> </p>
                     </div>
@@ -455,28 +455,18 @@
                     var ddid = '225702';
                 </script>
                 <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/doctor.js?v=20171026"></script>
-                <div class="w100 experience_x">
-                    <ul id="experience_nav_index" class="experience_nav">
-                        <li><a class="on" href="" value="" target="_self">全部点评<span>（1）</span></a></li>
-                        <li><a href="" value="非常满意" target="_self">非常满意<span>（111）</span></a></li>
-                        <li><a href="" value="满意"     target="_self">满意<span>（8）</span></a></li>
-                        <li><a href="" value="一般"     target="_self">一般<span>（1）</span></a></li>
-                        <li><a href="" value="不满意"   target="_self">不满意<span>（2）</span></a></li>
-                        <li><a href="" value="还不知道" target="_self"> 暂时不知道<span>（13）</span></a></li>
-                        <div class="clr"></div>
-                    </ul>
-                </div>
+
                 <ul class="experience_ul"> <li> <a name="f1194457"></a> <img src="http://www.mingyihui.net/templates/skins/red2017/images/user_90x90.jpg" alt="60.164.102.*">
                     <div class="experience_right right ">
-                        <p class="experience_name"> 就诊医生： <a href="/doctor_225702.html">吕安林</a> <span class="color_333"> (心脏内科 主任医师,副教授) </span> &nbsp;&nbsp;&nbsp; </p>
+                        <p class="experience_name"> 就诊医生： <a href="/doctor_225702.html">${d.dname}</a> <span class="color_333"> (心脏内科 主任医师,副教授) </span> &nbsp;&nbsp;&nbsp; </p>
                         <p class="experience_name"> 患者： <a href="javascript:;"></a>         &nbsp;&nbsp;&nbsp; </p>
-                        <p class="experience_name"> 疾病： <span class="class"><a href="/XinZangQiBoQiZhiRuShu/" title="心脏起搏器植入术">心脏起搏器植入术</a></span></p>
+                        <p class="experience_name"> 疾病： <span class="class"><a href="" ><c:forEach items="${d.departmentsSmall.illnessList}" var="dd">${dd.ilname}</c:forEach></a></span></p>
                         <p class="experience_satisfaction"> <span class="color_999">疗效满意度：</span> <span class="star star1"></span> <span class="f6c829">100%</span> </p>
                         <div class="clr"> </div>
                         <div class="comment_p clearfix">
                             <p> <span>看病过程：</span>关心病人，治疗及时，</p>
                         </div>
-                        <div class="praise_time clearfix"> <a id="praise1194457" class="praise1" href='javascript:showLoginbox();' target="_self" title="感谢他帮助了我！">(0)</a> <span class="fr"> 2015/03/08 01:01 </span> </div>
+                        <div class="praise_time clearfix"> <a id="praise1194457" class="praise1" href='javascript:showLoginbox();' target="_self" title="">(0)</a> <span class="fr"> 2015/03/08 01:01 </span> </div>
                     </div>
                     <div class="clr"> </div>
                 </li>
