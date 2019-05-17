@@ -25,7 +25,7 @@ public class GuahaoController {
     @Resource
     private IDepartmentsBigService departmentsBigService;
     @Resource
-    private IUserService userService;
+    private ISufferService sufferService;
 
     @GetMapping("/guahao")
     public String guahao(Model model){
@@ -98,10 +98,10 @@ public class GuahaoController {
         return "qt/Doctorxiangqing";
 
     }
-    @PostMapping("/user")
-    public String login(User user){
-
-
+    @PostMapping("/suffer")
+    public String login(Suffer suffer){
+        boolean b = sufferService.login(suffer);
+        System.out.println(b);
 
 
         return null;
