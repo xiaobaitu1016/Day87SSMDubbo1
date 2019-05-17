@@ -85,7 +85,7 @@ public class GuahaoController {
         DoctorExample.Criteria criteria1 = doctorExample.createCriteria();
         criteria1.andDidEqualTo(did);
         List<Doctor> allDoctor = doctorService.getAllDoctor(doctorExample);
-        System.out.println(allDoctor);
+
         model.addAttribute("Doctor",allDoctor);
 
 
