@@ -1,0 +1,51 @@
+* {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+BODY {
+	FONT-FAMILY: ËÎÌו,Arial,Helvetica,sans-serif; COLOR: #404040; FONT-SIZE: 12px
+}
+A {
+	COLOR: #1a66b3; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+IMG {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+* UL {
+	LIST-STYLE-TYPE: none
+}
+* OL {
+	LIST-STYLE-TYPE: none
+}
+* LI {
+	LIST-STYLE-TYPE: none
+}
+H1 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+H3 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+H4 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+H5 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+H6 {
+	FONT-SIZE: 12px; FONT-WEIGHT: normal
+}
+.dashed {
+	LINE-HEIGHT: 1px; BACKGROUND: url(../images/dashed.gif) repeat-x; HEIGHT: 1px; FONT-SIZE: 0px
+}
+.dot {
+	LETTER-SPACING: -3px
+}
+.clear {
+	LINE-HEIGHT: 0px; HEIGHT: 0px; CLEAR: both; FONT-SIZE: 0px
+}
+.liclear {
+	LINE-HEIGHT: 0; DISPLAY: inline; FLOAT: none; HEIGHT: 0px; CLEAR: both; FONT-SIZE: 0px
+}
