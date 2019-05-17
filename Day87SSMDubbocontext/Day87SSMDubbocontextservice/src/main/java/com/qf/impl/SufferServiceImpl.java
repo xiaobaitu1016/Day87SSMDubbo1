@@ -45,7 +45,7 @@ public class SufferServiceImpl implements ISufferService {
         SufferExample sufferExample = new SufferExample();
         SufferExample.Criteria criteria = sufferExample.createCriteria();
 
-        criteria.andSuidEqualTo(suffer.getSuid());
+        criteria.andSunameEqualTo(suffer.getSuname());
         criteria.andPasswordEqualTo(suffer.getPassword());
 
         List<Suffer> suffers = sufferMapper.selectByExample(sufferExample);

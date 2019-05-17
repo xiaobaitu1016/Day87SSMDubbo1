@@ -80,13 +80,13 @@
 				return true;
 			}
 	</script>
-	<form  action="user" onsubmit="return f();" method="post">
+	<form  action="/suffer" onsubmit="return f();" method="post">
 		<div class="page">
 			<div class="loginwarrp">
 				<div class="logo">用户登陆</div>
 				<div class="login_form">
 	<li class="login-item"><span>用户名：</span> 
-<input type="text" id="username" name="uname" class="login_input" placeholder="用户名">
+<input type="text" id="username" name="suname" class="login_input" placeholder="用户名">
 						<span></span></li>
 					<li class="login-item"><span>密 码：</span> <input
 						type="password" id="password" name="password" class="login_input">
