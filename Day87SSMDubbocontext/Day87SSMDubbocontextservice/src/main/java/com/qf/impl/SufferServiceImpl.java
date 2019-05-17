@@ -34,4 +34,9 @@ public class SufferServiceImpl implements ISufferService {
 
         return list;
     }
+
+    @Override
+    public boolean updateSufferBySuid(Suffer suffer) {
+        return sufferMapper.updateByPrimaryKey(suffer) > 0;
+    }
 }

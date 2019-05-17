@@ -8,4 +8,10 @@ import java.util.List;
 public interface INumberService {
 
     List<Number> getAllNumberByExample(NumberExample example);
+
+    boolean addNumber(Number number);
+
+    Number getNumberByNuid(int nuid);
+
+    boolean updateNumberByNuid(Number number);
 }

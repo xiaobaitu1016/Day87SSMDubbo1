@@ -19,4 +19,19 @@ public class NumberServiceImpl implements INumberService {
     public List<Number> getAllNumberByExample (NumberExample example) {
         return numberMapper.selectByExample(example);
     }
+
+    @Override
+    public boolean addNumber(Number number) {
+        return numberMapper.insert(number) > 0;
+    }
+
+    @Override
+    public Number getNumberByNuid(int nuid) {
+        return numberMapper.selectByPrimaryKey(nuid);
+    }
+
+    @Override
+    public boolean updateNumberByNuid(Number number) {
+        return numberMapper.updateByPrimaryKey(number) > 0;
+    }
 }

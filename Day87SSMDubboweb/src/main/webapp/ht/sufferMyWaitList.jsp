@@ -18,38 +18,29 @@
 <div id="content" style="margin-top: 50px">
 
     <div>
-        <form class="layui-form layui-form-pane" style="margin-left: 50px">
+        <form class="layui-form layui-form-pane" style="margin-left: 150px">
             <div class="layui-form-item">
                 <div class="layui-inline" >
-                    <label class="layui-form-label" style="width: 90px;"><b>患者名称</b></label>
+                    <label class="layui-form-label" style="width: 90px;"><b>疾病</b></label>
                     <div class="layui-input-inline" style="width: 200px;">
-                        <input type="tel" id="suname" autocomplete="on" class="layui-input">
-                    </div>
-                    <label class="layui-form-label" style="width: 90px;margin-left: 60px"><b>就诊科室</b></label>
-                    <div class="layui-input-inline" style="width: 200px;">
-                        <select id="demo1" lay-filter="demo1" lay-verify="required" type="text">
+                        <select id="ilid">
                             <option></option>
-                            <c:forEach var="d" items="${allDepartmentsBig}">
-                                <c:if test="${d.dbid != 4}">
-                                    <optgroup label="${d.dbname}">
-                                        <c:forEach items="${d.departmentsSmallList}" var="s">
-                                            <option value="${s.dsid}">${s.dsname}</option>
-                                        </c:forEach>
-                                    </optgroup>
-                                </c:if>
+                            <c:forEach var="i" items="${allIllness}">
+                                <option value="${i.ilid}">${i.ilname}</option>
                             </c:forEach>
                         </select>
                     </div>
-                    <label class="layui-form-label" style="width: 90px;margin-left: 60px"><b>就诊医师</b></label>
-                    <div class="layui-input-inline" style="width: 200px;">
-                        <select id="demo2" lay-filter="demo2" lay-verify="required" type="text">
-                            <c:forEach var="d" items="${allDoctor}">
-                                <option></option>
-                                <c:if test="${d.dsid != 7}">
-                                    <option value="${d.did}">${d.dname}</option>
-                                </c:if>
-                            </c:forEach>
-                        </select>
+                    <div class="layui-inline" style="margin-left: 80px">
+                        <label class="layui-form-label" style="width: 90px;"><b>挂号时间</b></label>
+                        <div class="layui-input-inline" style="width: 200px;">
+                            <%--<input type="text" name="date" id="" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">--%>
+                            <input type="text" name="start" id="startTime" placeholder="开始日期" autocomplete="off" readonly="readonly" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline"style="width: 200px;">
+                            <%--<input type="text" name="date" id="1" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">--%>
+                            <input type="text" name="end" id="endTime" placeholder="结束日期" autocomplete="off" readonly="readonly" class="layui-input">
+                        </div>
                     </div>
                     <div class="layui-btn-group" style="margin-bottom: 8px">
                         <button class="layui-btn layui-btn-normal" type="button" id="selectEmp" data-type="reload"><i class="layui-icon layui-icon-search"></i></button>
@@ -65,7 +56,9 @@
 </div>
 <script src="http://localhost:8088/layui.js" charset="utf-8"></script>
 <script type="text/html" id="barDemo">
-    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="desrc"><i class="layui-icon layui-icon-form"></i></button>
+    {{#  if(d.state == '待诊'){ }}
+        <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="接诊">接诊</button>
+    {{#  } }}
 </script>
 <script>
     layui.use('table', function(){
@@ -75,7 +68,7 @@
             elem: '#test'
             ,method: 'post'
             ,id: 'tableLine'
-            ,url:'/htAllSufferWait'
+            ,url:'/htAllMySufferWait'
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,page: true
             ,toolbar: '#toolbarDemo'
@@ -85,8 +78,7 @@
                 {field:'suid', title: '患者编号', templet:"<div>SU{{d.suid +10000}}</div>",sort: true,align: 'center' }
                 ,{field:'suid', title: '姓名',templet:"<div>{{d.suffer.suname}}</div>",sort: true,align: 'center' }
                 ,{field:'count', title: '排号数',align: 'center', sort: true}
-                ,{field:'did', title: '挂号科室',templet:"<div>{{d.doctor.departmentsSmall.dsname}}</div>",sort: true,align: 'center' }
-                ,{field:'did', title: '挂号医师',templet:"<div>{{d.doctor.dname}}</div>",align: 'center', sort: true}
+                ,{field:'ilid', title: '排号数',templet:"<div>{{d.illness.ilname}}</div>",align: 'center', sort: true}
                 ,{field:'time', title: '挂号时间',templet:"<div>{{layui.util.toDateString(d.time, 'yyyy年MM月dd日 HH:mm')}}</div>",align: 'center', sort: true,width:230}
                 ,{field:'state', title: '就诊状态',align: 'center', sort: true}
                 ,{title: '操作', templet:"", align: 'center', toolbar: '#barDemo'}
@@ -102,16 +94,16 @@
 
                 $('#selectEmp').on('click', function () {
                     // 搜索条件
-                    var send_suname = $('#suname').val();
-                    var send_dsmall   = $('#demo1').select().val();
-                    var send_doctor   = $('#demo2').select().val();
+                    var send_ilid = $('#ilid').select().val();
+                    var send_startTime   = $('#startTime').val();
+                    var send_endTime   = $('#endTime').val();
 
                     table.reload('tableLine',{
                         method: 'post'
                         , where: {
-                            'suname': send_suname,
-                            'dsid': send_dsmall,
-                            'did': send_doctor
+                            'ilid': send_ilid,
+                            'startTime': send_startTime,
+                            'endTime': send_endTime
                         }
                         , page: {
                             curr: 1
@@ -120,7 +112,7 @@
                 });
 
                 $("#addSuffer").on("click",function () {
-                    location.href="/toHtSufferWaitAdd";
+                    location.href="/toHtMySufferWaitAdd";
                 });
 
                 $("#getBack").on("click",function () {
@@ -133,6 +125,21 @@
                     ,layer = layui.layer
                     ,layedit = layui.layedit
                     ,laydate = layui.laydate;
+
+                var start = laydate.render({ //投票开始
+                    elem: '#startTime',
+                    type: 'time',
+                    done:function(value,date){
+                        endMax = end.config.max;
+                        end.config.min = date;
+                        end.config.min.month = date.month -1;
+                    }
+                });
+
+                var end = laydate.render({ //投票结束
+                    elem: '#endTime',
+                    type: 'time'
+                });
 
                 //日期
                 laydate.render({
@@ -169,16 +176,23 @@
 
             });
 
+            table.on('tool(tableLine)', function(obj){
+                var data = obj.data;
+                console.log(data);
+                if(obj.event === '接诊'){
+                    var name = encodeURIComponent(data.nuid);
+                    var nuid = data.nuid;
+                    $.post("/htSufferWaitJiezhen",{nuid:nuid},function (data) {
+                        if (data){
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+
         });
 
-        table.on('tool(tableLine)', function(obj){
-            var data = obj.data;
-            console.log(data);
-            if(obj.event === 'desrc'){
-                var name = encodeURIComponent(data.nuid);
-                location.href = "/htSufferWaitDescr/"+data.nuid;
-            }
-        });
+
 
     });
 

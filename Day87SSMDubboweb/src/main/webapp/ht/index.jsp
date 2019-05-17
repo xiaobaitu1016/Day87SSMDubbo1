@@ -24,9 +24,13 @@
     <div class="layui-header">
         <div class="layui-logo"><b>西京医院后台管理系统</b></div>
         <div class="layui-logo kit-logo-mobile"></div>
-        <ul class="layui-nav layui-layout-left kit-nav">
-            <li class="layui-nav-item"><a href="javascript:;">首页</a></li>
-            <li class="layui-nav-item"><a href="javascript:;">我的待诊</a></li>
+        <ul class="layui-nav layui-layout-left kit-nav" lay-filter="kitNavbar" kit-navbar>
+            <li class="layui-nav-item">
+                <a href="javascript:;" kit-target data-options="{url:'/toMain',icon:'&#xe68e;',title:'首页',id:'-1'}">首页</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" kit-target data-options="{url:'/toHtSufferMyWaitList',icon:'&#xe6c6;',title:'我的待诊',id:'3'}">我的待诊</a>
+            </li>
             <li class="layui-nav-item"><a href="javascript:;">我的咨询</a></li>
             <li class="layui-nav-item"><a href="javascript:;" id="pay">我的评价</a></li>
         </ul>
@@ -74,7 +78,7 @@
                                 <i class="layui-icon">&#xe6c6;</i><span> 就诊患者信息</span></a>
                         </dd>
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'/toHtSufferWaitList',icon:'&#xe6c6;',title:'我的待诊',id:'3'}">
+                            <a href="javascript:;" kit-target data-options="{url:'/toHtSufferMyWaitList',icon:'&#xe6c6;',title:'我的待诊',id:'3'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 我的待诊</span></a>
                         </dd>
                     </dl>
