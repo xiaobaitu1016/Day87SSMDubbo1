@@ -122,4 +122,12 @@ public class GuahaoController {
         httpSession.removeAttribute("suname");
         return "qt/index";
     }
+    @GetMapping("/yuyue")
+    public String yuyue (int did,HttpSession httpSession){
+        if (httpSession.getAttribute("suname") == null){
+            return "qt/denglu";
+        }else {
+            return "redirect:/Doctorxiangqing?did="+did;
+        }
+    }
 }

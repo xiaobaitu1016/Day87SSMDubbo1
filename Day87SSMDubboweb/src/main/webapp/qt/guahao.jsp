@@ -548,7 +548,7 @@
                         </div>
                         <div class="H_date_down fr"> <span class="star star2"></span> <span class="starwz">88%</span>
                             <a href=""> 在线咨询 </a>
-                            <a class="on" href=""  >预约挂号</a>
+                            <a class="on" href="/yuyue?did=${d.did}"  >预约挂号</a>
                         </div>
                     </li>
 
