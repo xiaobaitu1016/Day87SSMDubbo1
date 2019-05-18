@@ -10,7 +10,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <html>
 <head>
-    <title>患者答疑详情</title>
+    <title>患者答疑</title>
     <meta name="keywords"    content="西京医院科室列表，西京医院特色科室，西京医院科室介绍，西京医院重点科室，西京医院科室电话" />
     <meta name="description" content="名医汇为您提供西京医院科室列表，个科室个医生的挂号时间，特色科室、重点科室、西京医院科室电话等。百分百患者真实点评，打造科室医生排行榜，助您找到合适科室医生挂号就诊；" />
     <meta property="qc:admins" content="353120170365167110516654" />
@@ -250,13 +250,6 @@
         display: none;
     }
 
-    .td1{
-        color: grey;
-    }
-    #doctorImg{
-        height: 80px;
-        width: 80px;
-    }
     .titleclass{
         height: 100px;
         width: 900px;
@@ -269,24 +262,23 @@
 
 
 
-    #rightBody{
-        float: right;
-        position: relative;
-        margin-top: 30px;
-        margin-right: 30px;
+    ul.expert_ul13 li {
+        margin-top: 22px;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed #EEE;
+        line-height: 20px;
     }
-    .doctorDiv{
+
+    element.style {
+    }
+    ul.expert_ul13 li i.expert_i {
+        width: 16px;
+        height: 16px;
+        background: url(../images/expert_k_03.png) no-repeat;
         float: left;
-        width: 450px;
-        position: absolute;
-        margin-left:50px;
+        margin: 2px 10px 0 0;
     }
-    .sufferDiv{
-        float: right;
-        width: 450px;
-        position: absolute;
-        margin-right: 50px;
-    }
+
 </style>
 
 
@@ -310,121 +302,29 @@
             <div class="crumbs w1200" style="font-size: large"> <a href="http://www.mingyihui.net" style="font-size: medium">名医汇</a>&nbsp;&gt;&nbsp; <a href="http://www.mingyihui.net/ask/"style="font-size: medium">专家咨询</a>&nbsp;&gt;&nbsp;<a href="http://www.mingyihui.net/ask/newquestion.html" style="font-size: medium"> 问题大全</a>&nbsp;&gt;&nbsp;希望医生帮帮忙吧</div>
             <!--面包屑结束-->
             <div class="middleDiv">
-                <%--<div class="cyr1 fl" class="titleclass">--%>
-                    <%--<h1 class="title_h1" style="color: grey">希望医生帮帮忙吧</h1>--%>
-                    <%--&lt;%&ndash;<h3 style="color: grey">患者咨询</h3>&ndash;%&gt;--%>
-                <%--</div>--%>
-                <c:forEach items="${allConsultByExample}" var="c">
+            <c:forEach items="${allConsultByExample}" var="c">
 
-
-                <hr/>
-                <div style="border: darkgray">
-                    <table>
-                        <tr>
-                            <td class="td1">基本信息：</td>
-                            <td>${c.suffer.age}岁&nbsp;&nbsp;${c.suffer.sex}</td>
-                            <td class="td1"><f:formatDate value="${c.time}" pattern="yyyy-MM-dd"></f:formatDate> </td>
-                        </tr>
-                        <tr>
-                            <td class="td1"><br/>病情描述：</td>
-                            <td><br/>${c.descr}</td>
-                        </tr>
-                        <div  class="doctorDiv">
-                        <tr>
-                            <td><br/><img id="doctorImg" src="/images/doctor2.jpg"/></td>
-                            <td style="color: #00B83F"><br/>${c.doctor.dname}
-                                <a href="" >(西京医院-${c.doctor.departmentsSmall.dsname})</a>医生回复：
+            <div class="clr"></div>
+            <ul class="expert_ul13">
+                <li> <a href="selectDetails?cid=${c.cid}" style="font-size: small"> <i class="expert_i"><img src="/images/problem.png"/></i> ${c.descr} <span class="fr ex_c"><f:formatDate value="${c.time}" pattern="yyyy-MM-dd" /></span>
+                    <div class="clr"></div>
                     <c:forEach items="${allConsultAnswer}" var="ca" begin="0" end="1">
-                               <c:if test="${c.cid==ca.cid}">
-                                   <c:if test="${ca.role=='医师'}">
-
-                                        <p style="font-size: small;color: black">${ca.descr}</p>
-                                   </c:if>
-                               </c:if>
+                        <c:if test="${c.cid==ca.cid}">
+                             <p>${ca.descr}</p>
+                        </c:if>
                     </c:forEach>
-                            </td>
-
-                        </tr>
-                        </div>
-                        <div id="hiddenDiv">
-                            <div class="sufferDiv">
-                        <tr>
-                            <c:forEach items="${allConsultAnswer}" var="ca" begin="1" end="2">
-                            <c:if test="${c.cid==ca.cid}">
-                            <c:if test="${ca.role=='患者'}">
-                            <td> 患者回复：</td>
-                            <td>
-                                <p>${ca.descr}</p>
-                            </td>
-                            </c:if>
-                            </c:if>
-                            </c:forEach>
-                        </tr>
-                                </div>
-                            <div  class="doctorDiv">
-                        <tr>
-                            <c:forEach items="${allConsultAnswer}" var="ca" begin="2" end="3">
-                            <c:if test="${c.cid==ca.cid}">
-                            <c:if test="${ca.role=='医师'}">
-                                <td style="color: #00B83F">  医生回复：</td>
-                                <td>
-                                    <p style="font-size: small;color: black">${ca.descr}</p>
-                                </td>
-                            </c:if>
-                            </c:if>
-                            </c:forEach>
-                        </tr>
-                            </div>
-                        </div>
-
-                        <tr>
-                            <td style="color: red;font-size: x-small"><br/>评论来源：名医汇</td>
-
-                        </tr>
-                    </table>
-                </div>
-
-
-                </c:forEach>
+                </a> </li>
+            </ul>
+            </c:forEach>
             </div>
-            <%--<!--患者咨询-->--%>
-            <%--<div class="patient_ques  <ul class="question_ul">--%>
-                    <%--<li> <a href=""> <i class="expert_i"> </i>--%>
-                        <%--<a href="http://www.mingyihui.net/ask/q/consult_417768.html">希望医生帮帮忙吧</a>--%>
-                        <%--<span class="fr ex_c" style="background: white">2016/10/30 20:08</span>--%>
-                        <%--<div class="clr"> </div>--%>
-                        <%--<p> 经常在家，感觉头痛欲裂，左眼不管看什么东西都看不见。 </p>--%>
-                    <%--</a> </li>--%>
-                    <%--<li> <a href=""> <i class="expert_i"> </i>--%>
-                        <%--<a href="http://www.mingyihui.net/ask/q/consult_345217.html">昏迷期间能不能转院</a>--%>
-                        <%--<span class="fr ex_c" style="background: white">2016/08/27 19:07</span>--%>
-                        <%--<div class="clr"> </div>--%>
-                        <%--<p> 脑出血出血量9毫升，昏迷十几个小时，目前转院有危险吗？ </p>--%>
-                    <%--</a> </li>--%>
-
-                <%--</ul>--%>
-
-                <%--<div> </div>--%>
-                <%--<div class="patient_title clearfix">--%>
-
-
-
-                <%--</div>--%>
-
-
-
-
-
-
-
         </div>
-    </div>
 
+    </div>
 
 
         </div>
 <div style="float: right ;position: absolute;margin-top: -510px;margin-left: 1000px">
-    <div class="section_list_right right">
+    <div class="section_list_right right" >
 
     <!--擅长同类疾病医生start-->
         <div class="recommend border">
