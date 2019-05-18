@@ -121,7 +121,7 @@
                 });
 
                 $("#addSuffer").on("click",function () {
-                    location.href="/toHtSufferWaitAdd";
+                    location.href="/toDoctorListAdd";
                 });
 
                 $("#getBack").on("click",function () {
@@ -281,7 +281,7 @@
             console.log(data);
             if(obj.event === 'desrc'){
                 var name = encodeURIComponent(data.nuid);
-                location.href = "/htSufferWaitDescr/"+data.did;
+                location.href = "/toHtDoctorListDescr/"+data.did;
             }else if (obj.event === 'update') {
                 location.href = "/toHtDoctorListUpdate/"+data.did;
             }

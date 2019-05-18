@@ -19,4 +19,14 @@ public class DocRoleServiceImpl implements IDocRoleService {
 
         return docRoleMapper.selectByExample(example);
     }
+
+    @Override
+    public boolean deleteDocRoleByExample(DocRoleExample example) {
+        return docRoleMapper.deleteByExample(example) > 0;
+    }
+
+    @Override
+    public boolean addDocRole(DocRole docRole) {
+        return docRoleMapper.insert(docRole) > 0;
+    }
 }

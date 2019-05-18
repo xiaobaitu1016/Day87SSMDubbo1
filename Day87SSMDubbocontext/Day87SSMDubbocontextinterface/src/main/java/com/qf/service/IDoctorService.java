@@ -9,4 +9,8 @@ public interface IDoctorService {
     Doctor login(Doctor doctor);
 
     List<Doctor> getAllDoctor(DoctorExample example);
+
+    boolean updateDoctorByDid(Doctor doctor);
+
+    boolean addDoctor(Doctor doctor);
 }

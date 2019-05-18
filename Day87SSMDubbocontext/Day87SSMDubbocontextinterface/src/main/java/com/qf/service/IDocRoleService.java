@@ -8,4 +8,8 @@ import java.util.List;
 public interface IDocRoleService {
 
     List<DocRole> getAllDocRoleByExample(DocRoleExample example);
+
+    boolean deleteDocRoleByExample(DocRoleExample example);
+
+    boolean addDocRole(DocRole docRole);
 }
