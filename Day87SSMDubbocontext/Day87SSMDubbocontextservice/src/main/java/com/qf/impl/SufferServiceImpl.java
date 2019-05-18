@@ -58,4 +58,9 @@ public class SufferServiceImpl implements ISufferService {
 
 
     }
+
+    @Override
+    public boolean addSuffer(Suffer suffer) {
+        return sufferMapper.insert(suffer) > 0;
+    }
 }
