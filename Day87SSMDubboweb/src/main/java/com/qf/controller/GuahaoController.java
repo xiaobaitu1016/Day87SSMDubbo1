@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -100,13 +101,28 @@ public class GuahaoController {
 
     }
     @PostMapping("/suffer")
-    public String login(Suffer suffer,HttpSession httpSession,Model model){
-        boolean b = sufferService.login(suffer);
+    public String login(HttpServletRequest request){
+        String suname = request.getParameter("suname");
+        String password = request.getParameter("password");
+
+        System.out.println("suname"+suname+"pass"+password);
+
+        Suffer suffer1 = new Suffer();
+        suffer1.setSuname(suname);
+        suffer1.setPassword(password);
+
+        boolean b = sufferService.login(suffer1);
+
         System.out.println(b);
 
         if (b){
-            httpSession.setAttribute("suname",suffer.getSuname());
-
+            SufferExample sufferExample = new SufferExample();
+            SufferExample.Criteria criteria = sufferExample.createCriteria();
+            criteria.andSunameEqualTo(suname);
+            criteria.andPasswordEqualTo(password);
+            Suffer suffer = sufferService.getAllSufferByExample(sufferExample).get(0);
+            request.getSession().setAttribute("curSuffer",suffer);
+            
             return "qt/index" ;
         }else {
 
@@ -117,14 +133,14 @@ public class GuahaoController {
 
     }
     @GetMapping("/loginOut")
-    public String loginOut(HttpSession httpSession){
+    public String loginOut(HttpServletRequest request){
 
-        httpSession.removeAttribute("suname");
+        request.getSession().removeAttribute("curSuffer");
         return "qt/index";
     }
     @GetMapping("/yuyue")
-    public String yuyue (int did,HttpSession httpSession){
-        if (httpSession.getAttribute("suname") == null){
+    public String yuyue (int did,HttpServletRequest request){
+        if (request.getSession().getAttribute("curSuffer") == null){
             return "qt/denglu";
         }else {
             return "redirect:/Doctorxiangqing?did="+did;
