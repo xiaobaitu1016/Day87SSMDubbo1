@@ -530,4 +530,121 @@ public class HchDoctorController {
         return "ht/doctorListDescr";
     }
 
+    @GetMapping("/toHtDoctorCommitList")
+    public String toHtDoctorCommitList(Model model){
+
+        model.addAttribute("allDepartmentsBig",departmentsBigService.getAllDepartmentsBigByExample(null));
+
+        model.addAttribute("allDoctor",doctorService.getAllDoctor(null));
+
+        return "ht/doctorCommitList";
+    }
+
+    @PostMapping("/htAllDoctorCommitList")
+    @ResponseBody
+    public LayuiUtil<DoctorComment> htAllDoctorCommitList(HttpServletRequest request) {
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = Integer.parseInt(request.getParameter("limit"));
+
+        String dbids = request.getParameter("dbid");
+        String dsids = request.getParameter("dsid");
+        String dids = request.getParameter("did");
+
+        DoctorExample doctorExample = new DoctorExample();
+
+        if (dbids != null && !"".equals(dbids) && (dsids == null || "".equals(dsids))){
+            int dbid = Integer.parseInt(dbids);
+
+            DepartmentsSmallExample departmentsSmallExample = new DepartmentsSmallExample();
+            DepartmentsSmallExample.Criteria criteria = departmentsSmallExample.createCriteria();
+
+            criteria.andDbidEqualTo(dbid);
+
+            List<DepartmentsSmall> allDepartmentsSmallByExample = departmentsSmallService.getAllDepartmentsSmallByExample(departmentsSmallExample);
+
+            for (DepartmentsSmall s:allDepartmentsSmallByExample) {
+                DoctorExample.Criteria criteria1 = doctorExample.createCriteria();
+                criteria1.andDsidEqualTo(s.getDsid());
+
+                doctorExample.or(criteria1);
+            }
+        }else {
+
+            DoctorExample.Criteria criteria = doctorExample.createCriteria();
+            if (dsids != null && !"".equals(dsids)){
+
+                criteria.andDsidEqualTo(Integer.parseInt(dsids));
+
+            }
+            if (dids != null && !"".equals(dids)){
+                criteria.andDidEqualTo(Integer.parseInt(dids));
+            }
+        }
+
+        List<Doctor> allDoctor = doctorService.getAllDoctor(doctorExample);
+
+        DoctorCommentExample doctorCommentExample = new DoctorCommentExample();
+
+        for (Doctor d : allDoctor) {
+            DoctorCommentExample.Criteria criteria = doctorCommentExample.createCriteria();
+            criteria.andDidEqualTo(d.getDid());
+            doctorCommentExample.or(criteria);
+        }
+
+        List<DoctorComment> allDoctorCommentByExample = doctorCommentService.getAllDoctorCommentByExample(doctorCommentExample);
+
+        LayuiUtil<DoctorComment> layuiUtil = new LayuiUtil<>();
+
+        LayuiUtil<DoctorComment> doctorCommentLayuiUtil = layuiUtil.toLayuiList(allDoctorCommentByExample);
+
+        return doctorCommentLayuiUtil;
+    }
+
+    @GetMapping("/toHtDoctorCommitListDescr/{dcid}")
+    public String toHtDoctorCommitListDescr(Model model,@PathVariable int dcid){
+
+        DoctorCommentExample doctorCommentExample = new DoctorCommentExample();
+        DoctorCommentExample.Criteria criteria = doctorCommentExample.createCriteria();
+
+        criteria.andDcidEqualTo(dcid);
+
+        List<DoctorComment> allDoctorCommentByExample = doctorCommentService.getAllDoctorCommentByExample(doctorCommentExample);
+
+        model.addAttribute("doctorCommit",allDoctorCommentByExample.get(0));
+
+        return "ht/doctorCommitListDsecr";
+    }
+
+    @GetMapping("/toHtDoctorCommitMyList")
+    public String toHtDoctorCommitMyList(Model model){
+
+        model.addAttribute("allDepartmentsBig",departmentsBigService.getAllDepartmentsBigByExample(null));
+
+        model.addAttribute("allDoctor",doctorService.getAllDoctor(null));
+
+        return "ht/doctorCommitMyList";
+    }
+
+    @PostMapping("/htAllDoctorCommitMyList")
+    @ResponseBody
+    public LayuiUtil<DoctorComment> htAllDoctorCommitMyList(HttpServletRequest request) {
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = Integer.parseInt(request.getParameter("limit"));
+
+        Doctor curDoctor = (Doctor) request.getSession().getAttribute("curDoctor");
+
+        DoctorCommentExample doctorCommentExample = new DoctorCommentExample();
+        DoctorCommentExample.Criteria criteria = doctorCommentExample.createCriteria();
+        criteria.andDidEqualTo(curDoctor.getDid());
+
+
+        List<DoctorComment> allDoctorCommentByExample = doctorCommentService.getAllDoctorCommentByExample(doctorCommentExample);
+
+        LayuiUtil<DoctorComment> layuiUtil = new LayuiUtil<>();
+
+        LayuiUtil<DoctorComment> doctorCommentLayuiUtil = layuiUtil.toLayuiList(allDoctorCommentByExample);
+
+        return doctorCommentLayuiUtil;
+    }
+
 }
