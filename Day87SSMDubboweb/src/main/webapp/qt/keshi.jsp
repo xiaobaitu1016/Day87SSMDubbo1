@@ -60,27 +60,20 @@
 <div class="g_top">
     <div class="w1200 g_top_contant" >
         <div class="w1200 g_top_contant" >
-            <!--头部-->
-            <!--已登录-->
-            <div class="fl" style="display: none;" id="isLogin">
-                <p class="welcome fl" style="margin-top: 14px; border: none;"></p>
-                <div class="welcome fl" style="margin: 14px 0 0 10px; display: none">
-                    <a href="javascript:;" id="doctorMsgBox"><i class="consulInfor"></i><p>温馨提示:您有<span style="color:red;" id="unreplynums">0</span>条待回复的咨询，立即查看></p></a>
-                </div>
-                <div class="clr"></div>
-            </div>
-            <!--未登录-->
-            <div class="fl" style="display: none;" id="notLogin">
+            <c:if test="${suname == null}">
+            <div class="fl"  >
                 <ul class="login-registration">
-                    <li class="on popup_li"> <a href="javascript:jumpLogin();" target="_self">登录</a> </li>
-                    <li class="on zhuce"> <a href="javascript:jumpRegister();" target="_self">注册</a> </li>
+                    <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
+                    <li class="on zhuce"> <a href="qt/zhuce.jsp" >注册</a> </li>
                 </ul>
-                <ul class="login-registration">
-                    <li class="on popup_li">
-                        <span class="top_nav_icon"></span>
-                    </li>
-                    <li class="on zhuce"> <a href="javascript:showDoctorRegister();" target="_self">医生注册</a> </li>
-                </ul>
+                </c:if><c:if test="${suname != null}">
+                <div class="fl"  >
+                    <ul class="login-registration">
+                        <li class="on "> <a href=>${suname}</a> </li>
+                        <li class="on "> <a href="/loginOut" >退出</a> </li>
+                        <li class="on zhuce"> <a href="qt/zhuce.jsp" >个人中心</a> </li>
+                    </ul>
+                    </c:if>
                 <div class="clr"></div>
             </div>
             <div class="fr H_top_nav fnone">
