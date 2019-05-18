@@ -8,4 +8,8 @@ import java.util.List;
 public interface IDoctorIllnessService {
 
     List<DoctorIllness> getAllDoctorIllnessByExample(DoctorIllnessExample example);
+
+    boolean deleteDoctorIllnessByExample(DoctorIllnessExample example);
+
+    boolean addDoctorIllness(DoctorIllness doctorIllness);
 }

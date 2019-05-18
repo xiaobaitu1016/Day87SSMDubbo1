@@ -75,6 +75,7 @@
             elem: '#test'
             ,method: 'post'
             ,id: 'tableLine'
+            ,height: 480
             ,url:'/htAllDoctorList'
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,page: true
@@ -120,7 +121,7 @@
                 });
 
                 $("#addSuffer").on("click",function () {
-                    location.href="/toHtSufferWaitAdd";
+                    location.href="/toDoctorListAdd";
                 });
 
                 $("#getBack").on("click",function () {
@@ -280,7 +281,7 @@
             console.log(data);
             if(obj.event === 'desrc'){
                 var name = encodeURIComponent(data.nuid);
-                location.href = "/htSufferWaitDescr/"+data.did;
+                location.href = "/toHtDoctorListDescr/"+data.did;
             }else if (obj.event === 'update') {
                 location.href = "/toHtDoctorListUpdate/"+data.did;
             }

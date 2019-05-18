@@ -19,4 +19,14 @@ public class DoctorIllnessServiceImpl implements IDoctorIllnessService {
     public List<DoctorIllness> getAllDoctorIllnessByExample (DoctorIllnessExample example) {
         return doctorIllnessMapper.selectByExample(example);
     }
+
+    @Override
+    public boolean deleteDoctorIllnessByExample(DoctorIllnessExample example) {
+        return doctorIllnessMapper.deleteByExample(example) > 0;
+    }
+
+    @Override
+    public boolean addDoctorIllness(DoctorIllness doctorIllness) {
+        return doctorIllnessMapper.insert(doctorIllness) > 0;
+    }
 }

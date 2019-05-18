@@ -68,6 +68,7 @@
             elem: '#test'
             ,method: 'post'
             ,id: 'tableLine'
+            ,height: 480
             ,url:'/htAllMySufferWait'
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,page: true

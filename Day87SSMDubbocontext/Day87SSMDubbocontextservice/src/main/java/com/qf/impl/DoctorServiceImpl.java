@@ -32,4 +32,14 @@ public class DoctorServiceImpl implements IDoctorService {
     public List<Doctor> getAllDoctor(DoctorExample example) {
         return doctorMapper.selectByExample(example);
     }
+
+    @Override
+    public boolean updateDoctorByDid(Doctor doctor) {
+        return doctorMapper.updateByPrimaryKey(doctor) > 0;
+    }
+
+    @Override
+    public boolean addDoctor(Doctor doctor) {
+        return doctorMapper.insert(doctor) > 0;
+    }
 }
