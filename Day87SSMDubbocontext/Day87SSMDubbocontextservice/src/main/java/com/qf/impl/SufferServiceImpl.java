@@ -50,12 +50,17 @@ public class SufferServiceImpl implements ISufferService {
 
         List<Suffer> suffers = sufferMapper.selectByExample(sufferExample);
 
-        if (suffers == null){
+        if (suffers == null||suffers.isEmpty()){
             return false;
         }else {
             return true;
         }
 
 
+    }
+
+    @Override
+    public boolean addSuffer(Suffer suffer) {
+        return sufferMapper.insert(suffer) > 0;
     }
 }

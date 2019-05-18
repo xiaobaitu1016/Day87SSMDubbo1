@@ -14,4 +14,6 @@ public interface ISufferService {
     boolean updateSufferBySuid(Suffer suffer);
 
     boolean login(Suffer suffer);
+
+    boolean addSuffer(Suffer suffer);
 }

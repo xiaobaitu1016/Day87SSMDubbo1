@@ -32,7 +32,7 @@
                 <a href="javascript:;" kit-target data-options="{url:'/toHtSufferMyWaitList',icon:'&#xe6c6;',title:'我的待诊',id:'3'}">我的待诊</a>
             </li>
             <li class="layui-nav-item"><a href="javascript:;">我的咨询</a></li>
-            <li class="layui-nav-item"><a href="javascript:;" id="pay">我的评价</a></li>
+            <li class="layui-nav-item"><a href="javascript:;" kit-target data-options="{url:'/toHtDoctorCommitMyList',icon:'&#xe6c6;',title:'我的评价',id:'6'}">我的评价</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right kit-nav">
             <li class="layui-nav-item">
@@ -88,12 +88,12 @@
                     <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 医生信息</span></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'toHtDoctorList',icon:'&#xe6c6;',title:'医生信息列表',id:'4'}">
+                            <a href="javascript:;" kit-target data-options="{url:'/toHtDoctorList',icon:'&#xe6c6;',title:'医生信息列表',id:'4'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 医生信息列表</span></a>
                         </dd>
                         <dd>
-                            <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'>
-                                <i class="layui-icon">&#xe628;</i><span> 医生评价列表</span>
+                            <a href="javascript:;" kit-target data-options="{url:'/toHtDoctorCommitList',icon:'&#xe6c6;',title:'医生评价列表',id:'5'}">
+                                <i class="layui-icon">&#xe6c6;</i><span> 医生评价列表</span>
                             </a>
                         </dd>
                     </dl>
@@ -103,7 +103,7 @@
                     <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 科室信息</span></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
+                            <a href="javascript:;" kit-target data-options="{url:'/toHtDepartmentsBigList',icon:'&#xe6c6;',title:'一级科室信息列表',id:'7'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 一级科室信息列表</span></a>
                         </dd>
                         <dd>

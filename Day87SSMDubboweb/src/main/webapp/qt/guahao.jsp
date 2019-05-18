@@ -39,16 +39,16 @@
 <div class="g_top">
     <div class="w1200 g_top_contant" >
         <div class="w1200 g_top_contant" >
-            <c:if test="${suname == null}">
+            <c:if test="${curSuffer == null}">
             <div class="fl"  >
                 <ul class="login-registration">
                     <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
                     <li class="on zhuce"> <a href="qt/zhuce.jsp" >注册</a> </li>
                 </ul>
-                </c:if><c:if test="${suname != null}">
+                </c:if><c:if test="${curSuffer != null}">
                 <div class="fl"  >
                     <ul class="login-registration">
-                        <li class="on "> <a href=>${suname}</a> </li>
+                        <li class="on "> <a href=>${curSuffer.suname}</a> </li>
                         <li class="on "> <a href="/loginOut" >退出</a> </li>
                         <li class="on zhuce"> <a href="qt/zhuce.jsp" >个人中心</a> </li>
                     </ul>
@@ -548,7 +548,7 @@
                         </div>
                         <div class="H_date_down fr"> <span class="star star2"></span> <span class="starwz">88%</span>
                             <a href=""> 在线咨询 </a>
-                            <a class="on" href=""  >预约挂号</a>
+                            <a class="on" href="/yuyue?did=${d.did}"  >预约挂号</a>
                         </div>
                     </li>
 

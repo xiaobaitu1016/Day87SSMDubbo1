@@ -482,26 +482,10 @@
                         <p> <span class="green"> 67% </span> 好评率， <span class="green">2</span>人点评 </p>
                     </div>
                 </li>
-                <li> <span class="ranking1 fl">NO.2</span>
-                    <div class="ranking_right fr"> <a href="/doctor_225735.html"> 本院  白庆咸 </a>
-                        <p> <span class="green"> 100% </span> 好评率， <span class="green">2</span>人点评 </p>
-                    </div>
-                </li>
-                <li> <span class="ranking1 fl">NO.3</span>
-                    <div class="ranking_right fr"> <a href="/doctor_225738.html"> 本院  杨岚 </a>
-                        <p> <span class="green"> 100% </span> 好评率， <span class="green">1</span>人点评 </p>
-                    </div>
-                </li>
-                <li> <span class="ranking2 fl">NO.4</span>
-                    <div class="ranking_right fr"> <a href="/doctor_225734.html"> 本院  孙秉中 </a>
-                        <p> <span class="green"> 73% </span> 好评率， <span class="green">145</span>人点评 </p>
-                    </div>
-                </li>
-                <li> <span class="ranking2 fl">NO.5</span>
-                    <div class="ranking_right fr"> <a href="/doctor_225737.html"> 本院  张涛 </a>
-                        <p> <span class="green"> 100% </span> 好评率， <span class="green">1</span>人点评 </p>
-                    </div>
-                </li>
+
+
+
+
             </ul>
 
         </div>

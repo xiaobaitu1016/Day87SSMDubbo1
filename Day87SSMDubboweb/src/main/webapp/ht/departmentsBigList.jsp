@@ -9,7 +9,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <head>
-    <title>医生信息列表</title>
+    <title>一级科室信息列表</title>
     <link rel="stylesheet" href="http://localhost:8088/css/layui.css"  media="all">
 </head>
 
@@ -18,7 +18,7 @@
 <div id="content" style="margin-top: 50px">
 
     <div>
-        <form class="layui-form layui-form-pane" style="margin-left: 50px">
+        <form class="layui-form layui-form-pane" style="margin-left: 190px">
             <div class="layui-form-item">
                 <div class="layui-inline" >
                     <label class="layui-form-label" style="width: 90px;margin-left: 60px"><b>一级科室</b></label>
@@ -41,18 +41,9 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <label class="layui-form-label" style="width: 90px;"><b>医生姓名</b></label>
-                    <div class="layui-input-inline" style="width: 200px;">
-                        <select id="did" lay-filter="did" lay-verify="required" type="text">
-                            <option></option>
-                            <c:forEach var="d" items="${allDoctor}">
-                                <option value="${d.did}">${d.dname}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
                     <div class="layui-btn-group" style="margin-bottom: 8px">
                         <button class="layui-btn layui-btn-normal" type="button" id="selectEmp" data-type="reload"><i class="layui-icon layui-icon-search"></i></button>
-                        <button class="layui-btn layui-btn-normal" type="button" id="addSuffer" data-type="reload"><i class="layui-icon">&#xe654;</i></button>
+                        <button class="layui-btn layui-btn-normal" type="button" id="addDbig" data-type="reload"><i class="layui-icon layui-icon-search"></i></button>
                         <button class="layui-btn layui-btn-normal" type="reset" id="getBack"><i class="layui-icon">&#xe669;</i></button>
                     </div>
                 </div>
@@ -64,8 +55,7 @@
 </div>
 <script src="http://localhost:8088/layui.js" charset="utf-8"></script>
 <script type="text/html" id="barDemo">
-    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="update">修改</button>
-    <button class="layui-btn layui-btn-sm" lay-event="desrc">详情</button>
+    <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="desrc"><i class="layui-icon layui-icon-form"></i></button>
 </script>
 <script>
     layui.use('table', function(){
@@ -76,21 +66,22 @@
             ,method: 'post'
             ,id: 'tableLine'
             ,height: 480
-            ,url:'/htAllDoctorList'
+            ,url:'/htAllDepartmentsBigList'
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,page: true
             ,toolbar: '#toolbarDemo'
             ,limits: [3,5,8,10,20]
             ,limit: 8
             ,cols: [[
-                {field:'did', title: '医生编号', templet:"<div>DC{{d.did +10000}}</div>",sort: true,align: 'center' }
-                ,{field:'dname', title: '医生姓名',sort: true,align: 'center' }
-                ,{field:'dsid', title: '科室',templet:"<div>{{d.departmentsSmall.dsname}}</div>",sort: true,align: 'center' }
-                ,{field:'drid', title: '职称',align: 'center',templet:"<div>{{d.doctorRole.drname}}</div>", sort: true}
-                ,{field:'did', title: '职位',templet:"<div>{{d.docRoleKeyList[0].roles.rname}}</div>",sort: true,align: 'center' }
-                ,{field:'phone', title: '联系电话',align: 'center', sort: true}
-                ,{field:'praise', title: '好评数',align: 'center', sort: true,width:230}
-                ,{title: '操作', templet:"", align: 'center', toolbar: '#barDemo'}
+                {field:'dcid', title: '编号',sort: true,align: 'center', width:80}
+                ,{field:'dname', title: '医生姓名', width:120,templet:"<div>{{d.doctor.dname}}</div>",sort: true,align: 'center' }
+                ,{field:'dsid', title: '科室', width:120,templet:"<div>{{d.doctor.departmentsSmall.dsname}}</div>",sort: true,align: 'center' }
+                ,{field:'doctorManner', title: '医生态度', width:120,align: 'center', sort: true}
+                ,{field:'degree', title: '诊疗效果', width:120,sort: true,align: 'center' }
+                ,{field:'ilid', title: '疾病', width:120,templet:"<div>{{d.illness.ilname}}</div>",align: 'center', sort: true}
+                ,{field:'time', title: '评价时间', width:220,templet:"<div>{{layui.util.toDateString(d.time, 'yyyy年MM月dd日 HH:mm')}}</div>",align: 'center', sort: true}
+                ,{field:'descr', title: '详情',align: 'center', sort: true}
+                ,{title: '操作', templet:"", width:120, align: 'center', toolbar: '#barDemo'}
 
             ]]
         });
@@ -120,7 +111,7 @@
                     });
                 });
 
-                $("#addSuffer").on("click",function () {
+                $("#addDbig").on("click",function () {
                     location.href="/toDoctorListAdd";
                 });
 
@@ -146,7 +137,7 @@
                 form.on('select(dbig)',function (data) {
                     var a = data.value;
                     console.log(a);
-                    
+
 
 
                     $.post("/htGetDsmallByDbid",{dbid:a},function (data) {
@@ -281,9 +272,9 @@
             console.log(data);
             if(obj.event === 'desrc'){
                 var name = encodeURIComponent(data.nuid);
-                location.href = "/toHtDoctorListDescr/"+data.did;
+                location.href = "/toHtDoctorCommitListDescr/"+data.dcid;
             }else if (obj.event === 'update') {
-                location.href = "/toHtDoctorListUpdate/"+data.did;
+                location.href = "/toHtDoctorListUpdate/"+data.dcid;
             }
         });
 
