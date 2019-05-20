@@ -151,11 +151,16 @@ public class GuahaoController {
        String suname = request.getParameter("suname");
        String password = request.getParameter("password");
        String phone = request.getParameter("phone");
+       String age1 = request.getParameter("age");
+       String sex = request.getParameter("sex");
 
+       int age = Integer.parseInt(age1);
        Suffer suffer = new Suffer();
        suffer.setSuname(suname);
        suffer.setPassword(password);
        suffer.setPhone(phone);
+       suffer.setAge(age);
+       suffer.setSex(sex);
 
        boolean b = sufferService.addSuffer(suffer);
 

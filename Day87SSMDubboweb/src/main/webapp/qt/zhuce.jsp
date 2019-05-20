@@ -97,6 +97,18 @@
                 <li class="login-item"><span>手机号：</span>
                     <input type="text"  name="phone" class="login_input">
                     <span></span></li>
+                <li class="login-item"><span>年龄：</span>
+                    <input type="text"  name="age" class="login_input">
+                    <span></span></li>
+                <li class="login-item">
+                    <span>性别：</span>
+
+              <span class="radioSpan">
+              <input class="btnSex" type="radio" name="sex" value="0" checked id="lxfcmy"><label for="lxfcmy" class="mr10">男</label>
+              <input class="btnSex" type="radio" name="sex" value="1"  id="lxmy"><label for="lxmy">女</label>
+              </span>
+
+                </li>
 
                 <div class="clearfix"></div>
                 <li class="login-sub"><input type="submit" value="注册" /> <input

@@ -163,16 +163,15 @@
                 <i class="shadow"></i>
                 <i class="tit"><em></em> 修改头像</i>
             </a>
-            <h2>myhvqcu1557707088</h2>
+            <h2>${curSuffer.suname}</h2>
             <p>欢迎来到名医汇</p>
         </div>
 
         <ul class="left-nav"  id="left_nav">
 
-            <li><a  href=""   target="_self" id="nu1"  onclick="num(this);" type="qt/index.jsp"><i class="icon2"></i><span>我的医生</span></a></li>
-            <li><a  href=""   target="_self" id="nu2"><i class="icon2"></i><span>预约挂号</span></a></li>
-            <li><a  href=""   target="_self" id="nu3"><i class="icon9"></i><span>陪诊服务</span></a></li>
-            <li><a  href=""   target="_self" id="nu4"><i class="icon6"></i><span>账号设置</span></a></li>
+            <li><a  target="_self" id="nu1"  onclick="num();" ><i class="icon2"></i><span>个人中心</span></a></li>
+            <li><a  target="_self" id="nu2"  onclick="num1();"><i class="icon2"></i><span>充值</span></a></li>
+
         </ul>
     </div>
     <div class="layBC" id="layBCD" style="height: 372px;">
@@ -320,11 +319,15 @@
 </div>
 <script type="text/javascript">
 
-    function num(data) {
-        var t=data.type;
-        alert(t);
-        $("#layBCD").append("<iframe src="+t+"><iframe>");
-            }
+    function num() {
+        var div = document.getElementById("layBCD");
+        div.innerHTML="<iframe src=\"/qt/xinxi.jsp\" style=\"height:372px; width: 830px \"></iframe>";
+    }
+    function num1() {
+        var div = document.getElementById("layBCD");
+        div.innerHTML="<iframe src=\"/qt/index.jsp\" style=\"height:372px; width: 830px \"></iframe>";
+    }
+
 
 </script>
 </body>
