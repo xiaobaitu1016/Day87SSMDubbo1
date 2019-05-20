@@ -68,7 +68,7 @@
                             <h3 class="fl"> <a style="color: #333;" href="">${curDoctor.dname}</a></h3>
                             <Span class="fl doctor_titles">( ${curDoctor.doctorRole.drname} )</Span>
                             <small class="clr"><a href="">西京医院</a>&nbsp;&nbsp;<a href="/hospital_71/department_54.html">${curDoctor.departmentsSmall.dsname}</a> </small>
-                            <p class="star-p"><span class="dis-nums">${commentCount}条点评</span></p>
+                            <p class="star-p"><span class="dis-nums">${commentCount}条评价</span></p>
                             <p class="H_bgt"> 擅长疾病
                             </p>
                         </div>

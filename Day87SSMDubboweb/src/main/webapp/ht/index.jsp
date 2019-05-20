@@ -29,10 +29,11 @@
                 <a href="javascript:;" kit-target data-options="{url:'/toMain',icon:'&#xe68e;',title:'首页',id:'-1'}">首页</a>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;" kit-target data-options="{url:'/toHtSufferMyWaitList',icon:'&#xe6c6;',title:'我的待诊',id:'3'}">我的待诊</a>
+                <a href="javascript:;" kit-target data-options="{url:'/toHtSufferMyWaitList',icon:'&#xe6c6;',title:'我的待诊',id:'10'}">我的待诊</a>
             </li>
-            <li class="layui-nav-item"><a href="javascript:;">我的咨询</a></li>
-            <li class="layui-nav-item"><a href="javascript:;" kit-target data-options="{url:'/toHtDoctorCommitMyList',icon:'&#xe6c6;',title:'我的评价',id:'6'}">我的评价</a></li>
+            <li class="layui-nav-item"><a href="javascript:;" kit-target data-options="{url:'/toHtConsultListMy',icon:'&#xe6c6;',title:'我的咨询',id:'13'}">我的咨询</a></li>
+            <li class="layui-nav-item"><a href="javascript:;" kit-target data-options="{url:'/toHtDoctorCommitMyList',icon:'&#xe6c6;',title:'我的评价',id:'9'}">我的评价</a></li>
+            <li class="layui-nav-item"><a href="javascript:;" kit-target data-options="{url:'/departmentsSmallDescr/${curDoctor.dsid}',icon:'&#xe6c6;',title:'我的科室',id:'8'}">我的科室</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right kit-nav">
             <li class="layui-nav-item">
@@ -96,6 +97,11 @@
                                 <i class="layui-icon">&#xe6c6;</i><span> 医生评价列表</span>
                             </a>
                         </dd>
+                        <dd>
+                            <a href="javascript:;" kit-target data-options="{url:'/toHtDoctorCommitMyList',icon:'&#xe6c6;',title:'我的评价',id:'9'}">
+                                <i class="layui-icon">&#xe6c6;</i><span> 我的评价</span>
+                            </a>
+                        </dd>
                     </dl>
                 </li>
 
@@ -106,14 +112,9 @@
                             <a href="javascript:;" kit-target data-options="{url:'/toHtDepartmentsBigList',icon:'&#xe6c6;',title:'科室信息列表',id:'7'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 科室信息列表</span></a>
                         </dd>
-                        <%--<dd>
-                            <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
-                                <i class="fa fa-user" aria-hidden="true"></i><span> 二级科室信息列表</span>
-                            </a>
-                        </dd>--%>
                         <dd>
-                            <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'>
-                                <i class="layui-icon">&#xe628;</i><span> 科室排班表</span>
+                            <a href="javascript:;" kit-target data-options="{url:'/departmentsSmallDescr/${curDoctor.dsid}',icon:'&#xe6c6;',title:'我的科室',id:'8'}">
+                                <i class="fa fa-user" aria-hidden="true"></i><span> 我的科室</span>
                             </a>
                         </dd>
                     </dl>
@@ -123,27 +124,12 @@
                     <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 患者咨询</span></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
-                                <i class="layui-icon">&#xe6c6;</i><span> 待回复信息列表</span></a>
+                            <a href="javascript:;" kit-target data-options="{url:'/toConsultList',icon:'&#xe6c6;',title:'咨询信息列表',id:'11'}">
+                                <i class="layui-icon">&#xe6c6;</i><span> 咨询信息列表</span></a>
                         </dd>
                         <dd>
-                            <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
-                                <i class="fa fa-user" aria-hidden="true"></i><span> 咨询信息列表</span>
-                            </a>
-                        </dd>
-                    </dl>
-                </li>
-
-                <li class="layui-nav-item">
-                    <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 疾病信息</span></a>
-                    <dl class="layui-nav-child">
-                        <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'test.html',icon:'&#xe6c6;',title:'表格',id:'1'}">
-                                <i class="layui-icon">&#xe6c6;</i><span> 疾病信息列表</span></a>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
-                                <i class="fa fa-user" aria-hidden="true"></i><span> 疾病信息管理</span>
+                            <a href="javascript:;" kit-target data-options="{url:'/toHtConsultListMy',icon:'&#xe6c6;',title:'我的咨询',id:'13'}">
+                                <i class="layui-icon">&#xe6c6;</i><span> 我的咨询</span>
                             </a>
                         </dd>
                     </dl>

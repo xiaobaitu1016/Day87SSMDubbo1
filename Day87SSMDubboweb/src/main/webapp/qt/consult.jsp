@@ -306,7 +306,7 @@
 
             <div class="clr"></div>
             <ul class="expert_ul13">
-                <li> <a href="selectDetails?cid=${c.cid}" style="font-size: small"> <i class="expert_i"></i><img src="/images/pro.png"/> ${c.descr} <span class="fr ex_c"><f:formatDate value="${c.time}" pattern="yyyy-MM-dd" /></span>
+                <li> <a href="selectDetails?cid=${c.cid}" style="font-size: small"> <i class="expert_i"><img src="/images/problem.png"/></i> ${c.descr} <span class="fr ex_c"><f:formatDate value="${c.time}" pattern="yyyy-MM-dd" /></span>
                     <div class="clr"></div>
                     <c:forEach items="${allConsultAnswer}" var="ca" begin="0" end="1">
                         <c:if test="${c.cid==ca.cid}">
