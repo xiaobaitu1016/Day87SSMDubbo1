@@ -182,12 +182,12 @@
                         <p class="overview_p"> <a href="/hospital_1302/department_399.html">${d.departmentsSmall.dsname}</a>
 
                             <a class="hospital_guahao" href="" title="西京医院预约挂号"> 西京医院预约挂号 </a>
-                            <a class="hospital_guahao" href="" title="价格"> 9.99元 </a>
+                            <a class="hospital_guahao" href="" title="价格"> ${d.doctorRole.price} 元</a>
                         </p>
                     </div>
                     <div class="w100 clearfix"> <span>擅&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长:<c:forEach items="${d.departmentsSmall.illnessList}" var="dd">${dd.ilname}</c:forEach> 等... </span>
 
-                        <p class="overview_p"><c:forEach items="${d.doctorIllnessList}" var="s">${s.illness}</c:forEach> </p>
+                        <p class="overview_p"><c:forEach items="${d.doctorIllnessList}" var="s">${s.illness.ilname}</c:forEach> </p>
                     </div>
 
                     <div class="registration left">
@@ -210,213 +210,858 @@
             <div class="out_call">
                 <h3>出诊时间</h3>
                 <table border="0">
-
-                        <tr>
-                            <th>时间</th>
-                            <th>周一</th>
-                            <th>周二</th>
-                            <th>周三</th>
-                            <th>周四</th>
-                            <th>周五</th>
-
-                        </tr>
-
-                        <tr >
-                            <td><span>上午1</span></td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 1 && s.whichclass == 1}">
-                                            出诊
-                                        </c:if>
+                    <thead>
+                    <tr>
+                        <th>周一</th>
+                        <th>周二</th>
+                        <th>周三</th>
+                        <th>周四</th>
+                        <th>周五</th>
+                        <th>周六</th>
+                        <th>周日</th>
+                    </tr>
+                    <tr>
+                        <th id="m1"></th>
+                        <th id="m2"></th>
+                        <th id="m3"></th>
+                        <th id="m4"></th>
+                        <th id="m5"></th>
+                        <th id="m6"></th>
+                        <th id="m7"></th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody1">
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 1}">
+                                        <button name="guahao" id="g111">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 2 && s.whichclass == 1}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 1}">
+                                        <button name="guahao" id="g212">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 3 && s.whichclass == 1}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 1}">
+                                        <button name="guahao" id="g313">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 4 && s.whichclass == 1}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 1}">
+                                        <button name="guahao" id="g414">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 5 && s.whichclass == 1}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 1}">
+                                        <button name="guahao" id="g515">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><span>上午2</span></td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 1 && s.whichclass == 2}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 2}">
+                                        <button name="guahao" id="g121">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 2 && s.whichclass == 2}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 2}">
+                                        <button name="guahao" id="g222">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 3 && s.whichclass == 2}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 2}">
+                                        <button name="guahao" id="g323">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 4 && s.whichclass == 2}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 2}">
+                                        <button name="guahao" id="g424">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 5 && s.whichclass == 2}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 2}">
+                                        <button name="guahao" id="g525">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><span>下午1</span></td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 1 && s.whichclass == 3}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 3}">
+                                        <button name="guahao" id="g131">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 2 && s.whichclass == 3}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 3}">
+                                        <button name="guahao" id="g232">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 3 && s.whichclass == 3}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 3}">
+                                        <button name="guahao" id="g333">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 4 && s.whichclass == 3}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 3}">
+                                        <button name="guahao" id="g434">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 5 && s.whichclass == 3}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 3}">
+                                        <button name="guahao" id="g535">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td><span>下午2</span></td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 1 && s.whichclass == 4}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 4}">
+                                        <button name="guahao" id="g141">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 2 && s.whichclass == 4}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 4}">
+                                        <button name="guahao" id="g242">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 3 && s.whichclass == 4}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 4}">
+                                        <button name="guahao" id="g343">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 4 && s.whichclass == 4}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 4}">
+                                        <button name="guahao" id="g444">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                            <td>&nbsp;
-                                <c:forEach var="s" items="${allDoctorSchedule}">
-                                    <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
-                                        <c:if test="${s.weekday == 5 && s.whichclass == 4}">
-                                            出诊
-                                        </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 4}">
+                                        <button name="guahao" id="g545">可预约</button>
                                     </c:if>
-                                </c:forEach>
-                            </td>
-                        </tr>
-                    </table>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                    <tr>
+                        <th id="m8"></th>
+                        <th id="m9"></th>
+                        <th id="m10"></th>
+                        <th id="m11"></th>
+                        <th id="m12"></th>
+                        <th id="m13"></th>
+                        <th id="m14"></th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody2">
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 1}">
+                                        <button name="guahao" id="g118">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 1}">
+                                        <button name="guahao" id="g219">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 1}">
+                                        <button name="guahao" id="g3110">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 1}">
+                                        <button name="guahao" id="g4111">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 1}">
+                                        <button name="guahao" id="g5112">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 2}">
+                                        <button name="guahao" id="g128">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 2}">
+                                        <button name="guahao" id="g229">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 2}">
+                                        <button name="guahao" id="g3210">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 2}">
+                                        <button name="guahao" id="g4211">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 2}">
+                                        <button name="guahao" id="g5212">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 3}">
+                                        <button name="guahao" id="g138">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 3}">
+                                        <button name="guahao" id="g239">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 3}">
+                                        <button name="guahao" id="g3310">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 3}">
+                                        <button name="guahao" id="g4311">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 3}">
+                                        <button name="guahao" id="g5312">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 4}">
+                                        <button name="guahao" id="g148">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 4}">
+                                        <button name="guahao" id="g249">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 4}">
+                                        <button name="guahao" id="g3410">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 4}">
+                                        <button name="guahao" id="g4411">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 4}">
+                                        <button name="guahao" id="g5412">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead/>
+                    <tr>
+                        <th id="m15"></th>
+                        <th id="m16"></th>
+                        <th id="m17"></th>
+                        <th id="m18"></th>
+                        <th id="m19"></th>
+                        <th id="m20"></th>
+                        <th id="m21"></th>
+                    </tr>
+                    </thead>
+                    <tbody  id="tbody3">
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 1}">
+                                        <button name="guahao" id="g1115">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 1}">
+                                        <button name="guahao" id="g2116">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 1}">
+                                        <button name="guahao" id="g3117">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 1}">
+                                        <button name="guahao" id="g4118">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 1}">
+                                        <button name="guahao" id="g5119">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 2}">
+                                        <button name="guahao" id="g1215">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 2}">
+                                        <button name="guahao" id="g2216">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 2}">
+                                        <button name="guahao" id="g3217">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 2}">
+                                        <button name="guahao" id="g4218">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 2}">
+                                        <button name="guahao" id="g5219">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 3}">
+                                        <button name="guahao" id="g1315">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 3}">
+                                        <button name="guahao" id="g2316">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 3}">
+                                        <button name="guahao" id="g3317">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 3}">
+                                        <button name="guahao" id="g4318">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 3}">
+                                        <button name="guahao" id="g5319">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 4}">
+                                        <button name="guahao" id="g1415">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 4}">
+                                        <button name="guahao" id="g2416">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 4}">
+                                        <button name="guahao" id="g3417">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 4}">
+                                        <button name="guahao" id="g4418">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 4}">
+                                        <button name="guahao" id="g5419">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                    <tr>
+                        <th id="m22"></th>
+                        <th id="m23"></th>
+                        <th id="m24"></th>
+                        <th id="m25"></th>
+                        <th id="m26"></th>
+                        <th id="m27"></th>
+                        <th id="m28"></th>
+                    </tr>
+                    </thead>
+                    <tbody  id="tbody4">
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 1}">
+                                        <button name="guahao" id="g1122">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 1}">
+                                        <button name="guahao" id="g2123">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 1}">
+                                        <button name="guahao" id="g3124">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 1}">
+                                        <button name="guahao" id="g4125">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 1}">
+                                        <button name="guahao" id="g5126">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 2}">
+                                        <button name="guahao" id="g1222">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 2}">
+                                        <button name="guahao" id="g2223">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 2}">
+                                        <button name="guahao" id="g3224">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 2}">
+                                        <button name="guahao" id="g4225">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 2}">
+                                        <button name="guahao" id="g5226">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 3}">
+                                        <button name="guahao" id="g1322">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 3}">
+                                        <button name="guahao" id="g2323">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 3}">
+                                        <button name="guahao" id="g3324">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 3}">
+                                        <button name="guahao" id="g4325">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 3}">
+                                        <button name="guahao" id="g5326">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 1 && s.whichclass == 4}">
+                                        <button name="guahao" id="g1422">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 2 && s.whichclass == 4}">
+                                        <button name="guahao" id="g2423">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 3 && s.whichclass == 4}">
+                                        <button name="guahao" id="g3424">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 4 && s.whichclass == 4}">
+                                        <button name="guahao" id="g4425">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;
+                            <c:forEach var="s" items="${allDoctorSchedule}">
+                                <c:if test="${s.did.equals(d.did) && s.dsid.equals(d.dsid)}">
+                                    <c:if test="${s.weekday == 5 && s.whichclass == 4}">
+                                        <button name="guahao" id="g5426">可预约</button>
+                                    </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!--出诊时间表end-->
@@ -562,6 +1207,67 @@
         </div>
     </div>
 </div>
-
+</div>
 </body>
+<script type="text/javascript">
+
+    // 导航弹窗
+    (function() {
+        var nowTime = new Date();
+
+        function getDaysInMonth(year,month){
+            month = parseInt(month,10); //parseInt(number,type)这个函数后面如果不跟第2个参数来表示进制的话，默认是10进制。
+            var temp = new Date(year,month,0);
+            return temp.getDate();
+        }
+
+
+        function nowDay(index) {
+            return nowTime.getDay()+index;
+        }
+
+        function nowMMdd(index) {
+            var mydate = new Date();
+
+            var str = "";
+            var mm = mydate.getMonth()+1;
+
+            var maxDays = getDaysInMonth(mydate.getFullYear(),mm);
+            var dd = 0;
+
+            if (mydate.getDate()+index>maxDays){
+                dd = mydate.getDate()+index-maxDays;
+                mm++;
+            } else {
+                dd = mydate.getDate()+index;
+            }
+            if(mydate.getMonth()>9){
+                str += mm;
+            }
+            else{
+                str += mm;
+            }
+            if(mydate.getDate()>9){
+                str += "月"+ dd +"日";
+            }
+            else{
+                str += "月0" + dd +"日";
+            }
+
+            return str;
+
+        }
+        for (var i=0;i<30;i++){
+            $("#m"+nowDay(i)).text(nowMMdd(i));
+        }
+
+
+        $("#tbody1").on("click","button",function () {
+           var aa = $(this).attr("id");
+        });
+
+
+    })();
+
+</script>
 </html>
