@@ -11,4 +11,6 @@ public interface IIllnessService {
 
     List<Illness> getAllIllness(IllnessExample example);
 
+    boolean addIllness(Illness illness);
+
 }
