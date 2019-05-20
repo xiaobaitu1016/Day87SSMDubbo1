@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>【西京医院就医指南】挂号_费用_地址_电话 西京医院网上预约挂号攻略大全 – 名医汇</title>
@@ -59,23 +58,7 @@
 <div class="g_top">
     <div class="w1200 g_top_contant" >
         <div class="w1200 g_top_contant" >
-            <c:if test="${curSuffer == null}">
-            <div class="fl"  >
-                <ul class="login-registration">
-                    <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
-                    <li class="on zhuce"> <a href="/qt/zhuce.jsp" >注册</a> </li>
-                </ul>
-                </c:if>
-                <c:if test="${curSuffer != null}">
-                <div class="fl"  >
-                    <ul class="login-registration">
-                        <li class="on "> <a href=>${curSuffer.suname}</a> </li>
-                        <li class="on "> <a href="/loginOut" >退出</a> </li>
-                        <li class="on zhuce"> <a href="qt/zhuce.jsp" >个人中心</a> </li>
-                    </ul>
-                    </c:if>
-                    <div class="clr"></div>
-                </div>
+            <!--头部-->
 
 
 
@@ -95,7 +78,6 @@
         </div>
     </div>
 </div>
-
 
 <!--导航e-->
 <script type="text/javascript">
@@ -304,41 +286,29 @@
             <ul class="section_nav clearfix">
                 <li><a          href="/qt/index.jsp"             target="_self">概览</a></li>
                 <li><a          href="/qt/xiangqing.jsp"       target="_self">详细介绍</a></li>
-                <li><a          href="/guahao"          target="_self">预约挂号</a></li>
+                <li><a          href="/qt/guahao.jsp"          target="_self">预约挂号</a></li>
                 <li><a          href="/getAllDepart" target="_self">医院科室</a></li>
-                <li><a          href="/getAllIllness"      target="_self">擅长疾病</a></li>
-                <li><a  class="hover"        href="/qt/zhinan.jsp"  target="_self">预约指南</a></li>
-                <li><a          href="/getAllConsult"  target="_self">患者答疑</a></li>
+                <li><a          href="/qt/jibing.jsp"      target="_self">擅长疾病</a></li>
+                <li><a     class="hover"     href="/qt/zhinan.jsp"  target="_self">预约指南</a></li>
+                <li><a          href="/qt/dayi.jsp"  target="_self">患者答疑</a></li>
                 <li><a          href="/qt/pingjia.jsp"  target="_self">就诊评价</a></li>
             </ul>
             <div class="clr"></div>
             <div class="list_title3" style="border-bottom: none;float: left;width: 900px;">
                 <ul class="list_title3_ul">
-                    <li>
-                        <a href="/article_9167.html">西京医院怎么样_评价好吗_西京医院好不好</a>
 
+
+                    <li>
+                        <h1 style="background: white"><b>预约须知</b></h1>
+                        <span style="background: white;color: black">第四军医大学西京医院预约挂号须知 我院门诊部分教授实施全预约挂号，请关注门诊预约挂号网站，了解实时信息。预约科室代码、专家代码和资料详见就医指南或网站。 1、预约时限： 预约挂号应提前在教授出诊当日前七天开始预约，预约系统开放时间为每天下午16时。例：本周一下午16:00开始预约下周一的专家门诊号。 2、预约方式包括： 自助预约：请持“一卡通”就诊卡在门诊大厅自助预约机按提示预约； 电话预约：西京医院门诊预约挂号预约电话02983215321，请按自动语音提示预约； 网站预约：西京医院门诊预约挂号网www.83215321.com，请按相应流程预约； 电话预约联盟：联通客户拨打：116114、10018；移动客户拨打：12580；电信客户拨打：118114 进行人工电话预约。 以上预约方式均预约当前时间七日内的门诊号，预约成功后请于就诊当日到门诊办卡点办理“一卡通”就诊卡,就诊前半小时在自助挂号机上点击“自助挂号"“预约确认” 输入卡号和密码,点击“确认”领取挂号流水单，等候就诊。 就医指南定期更新，请注意查看专家预约时间及出诊变更。同一个“一卡通”就诊卡号同一时间、同一专家限约一个号。部分科室及部分专家不提供预约。若遇专家停诊，预约号自动取消，不做顺延。 取消预约：如不能按时赴约，请及时通过预约挂号系统取消预约。就诊当日上午6:30前取消当日的预约号。对预约成功却无故失约或反常的预约行为，“一卡通”就诊卡卡号将被列入黑名单，暂停或禁止该卡号预约挂号权限，患者须到信息台申明解卡后，方能正常使用。 我院除公示的预约挂号方式外，不接受其它预约方式预约的门诊号。如“好大夫”网站的预约号不予接受。</span>
                     </li>
                     <li>
-                        <a href="">西京医院就医九大攻略！含挂号、检查、住宿等……</a>
-
+                        <h1 style="background: white"><b>就医流程</b></h1>
+                        <span style="background: white;color: black">1.一楼导诊台，问询导诊台 2.科室挂号 3.科室就诊 4.收费缴费 5.各种检查 6.科室复诊、住院处缴费、住院 7.收费处缴费 8.药房取药 9.门诊输液治疗 10.离院</span>
                     </li>
-                    <li>
-                        <a href="">西京医院预约挂号网挂号攻略</a>
 
-                    </li>
-                    <li>
-                        <a href="">西京医院预约挂号绿色就医攻略</a>
-
-                    </li>
-                    <li>
-                        <a href="">西京医院怎么预约挂号，具体操作流程</a>
-
-                    </li>
-                    <li>
-                        <a href="">西京医院各大科室最强医师</a>
-
-                    </li>
                 </ul>
+
             </div>
         </div>
         <!--科室右边内容-->
@@ -382,7 +352,7 @@
 
 
         </div>
-</div>
+    </div>
     <div class="footer">
         <div class="footer-pd">
             <div class="fl about-myh">
