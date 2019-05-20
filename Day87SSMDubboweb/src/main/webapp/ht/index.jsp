@@ -103,14 +103,14 @@
                     <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 科室信息</span></a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;" kit-target data-options="{url:'/toHtDepartmentsBigList',icon:'&#xe6c6;',title:'一级科室信息列表',id:'7'}">
-                                <i class="layui-icon">&#xe6c6;</i><span> 一级科室信息列表</span></a>
+                            <a href="javascript:;" kit-target data-options="{url:'/toHtDepartmentsBigList',icon:'&#xe6c6;',title:'科室信息列表',id:'7'}">
+                                <i class="layui-icon">&#xe6c6;</i><span> 科室信息列表</span></a>
                         </dd>
-                        <dd>
+                        <%--<dd>
                             <a href="javascript:;" data-url="form.html" data-icon="fa-user" data-title="表单" kit-target data-id='2'>
                                 <i class="fa fa-user" aria-hidden="true"></i><span> 二级科室信息列表</span>
                             </a>
-                        </dd>
+                        </dd>--%>
                         <dd>
                             <a href="javascript:;" data-url="nav.html" data-icon="&#xe628;" data-title="导航栏" kit-target data-id='3'>
                                 <i class="layui-icon">&#xe628;</i><span> 科室排班表</span>
@@ -197,11 +197,11 @@
             switchSkin(skin);
         });
         var setSkin = function(value) {
-                layui.data('kit_skin', {
-                    key: 'skin',
-                    value: value
-                });
-            },
+            layui.data('kit_skin', {
+                key: 'skin',
+                value: value
+            });
+        },
             getSkinName = function() {
                 return layui.data('kit_skin').skin;
             },

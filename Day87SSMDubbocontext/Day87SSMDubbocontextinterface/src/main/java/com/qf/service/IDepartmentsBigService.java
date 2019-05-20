@@ -9,4 +9,8 @@ public interface IDepartmentsBigService {
 
     List<DepartmentsBig> getAllDepartmentsBigByExample(DepartmentsBigExample example);
 
+    boolean addDepartmentsBig(DepartmentsBig departmentsBig);
+
+    boolean updateDepartmentsBigByDbid(DepartmentsBig departmentsBig);
+
 }

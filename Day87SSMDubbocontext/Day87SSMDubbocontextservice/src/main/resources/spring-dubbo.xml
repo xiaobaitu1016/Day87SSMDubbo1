@@ -9,7 +9,7 @@
     <dubbo:application name="Day87SSMDubbocontextservice"/>
 
     <dubbo:registry address="zookeeper://10.12.159.162:2181"/>
-    <!--<dubbo:registry address="zookeeper://192.168.0.103:2181"/>-->
+    <!--<dubbo:registry address="zookeeper://192.168.0.121:2181"/>-->
 
     <dubbo:protocol name="dubbo" port="20880"/>
 

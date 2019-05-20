@@ -20,4 +20,14 @@ public class DepartmentsBigServiceImpl implements IDepartmentsBigService {
 
         return departmentsBigMapper.selectByExample(example);
     }
+
+    @Override
+    public boolean addDepartmentsBig(DepartmentsBig departmentsBig) {
+        return departmentsBigMapper.insert(departmentsBig) > 0;
+    }
+
+    @Override
+    public boolean updateDepartmentsBigByDbid(DepartmentsBig departmentsBig) {
+        return departmentsBigMapper.updateByPrimaryKey(departmentsBig) > 0;
+    }
 }

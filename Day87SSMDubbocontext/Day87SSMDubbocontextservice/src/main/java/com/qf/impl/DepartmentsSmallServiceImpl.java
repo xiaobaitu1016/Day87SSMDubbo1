@@ -25,4 +25,14 @@ public class DepartmentsSmallServiceImpl implements IDepartmentsSmallService {
     public DepartmentsSmall getDepartmentsSmallByDsid(int dsid) {
         return departmentsSmallMapper.selectByPrimaryKey(dsid);
     }
+
+    @Override
+    public boolean addDepartmentsSmall(DepartmentsSmall departmentsSmall) {
+        return departmentsSmallMapper.insert(departmentsSmall) > 0;
+    }
+
+    @Override
+    public boolean updateDepartmentsSmallByDsid(DepartmentsSmall departmentsSmall) {
+        return departmentsSmallMapper.updateByPrimaryKey(departmentsSmall) > 0;
+    }
 }

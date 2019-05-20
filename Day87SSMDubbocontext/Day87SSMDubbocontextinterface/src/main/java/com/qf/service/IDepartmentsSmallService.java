@@ -11,4 +11,8 @@ public interface IDepartmentsSmallService {
     List<DepartmentsSmall> getAllDepartmentsSmallByExample(DepartmentsSmallExample example);
 
     DepartmentsSmall getDepartmentsSmallByDsid(int dsid);
+
+    boolean addDepartmentsSmall(DepartmentsSmall departmentsSmall);
+
+    boolean updateDepartmentsSmallByDsid(DepartmentsSmall departmentsSmall);
 }
