@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>就诊评价</title>
@@ -52,25 +53,20 @@
         <div class="w1200 g_top_contant" >
             <!--头部-->
             <!--已登录-->
-            <div class="fl" style="display: none;" id="isLogin">
-                <p class="welcome fl" style="margin-top: 14px; border: none;"></p>
-                <div class="welcome fl" style="margin: 14px 0 0 10px; display: none">
-                    <a href="javascript:;" id="doctorMsgBox"><i class="consulInfor"></i><p>温馨提示:您有<span style="color:red;" id="unreplynums">0</span>条待回复的咨询，立即查看></p></a>
-                </div>
-                <div class="clr"></div>
-            </div>
-            <!--未登录-->
-            <div class="fl" style="display: none;" id="notLogin">
+            <c:if test="${curSuffer == null}">
+            <div class="fl"  >
                 <ul class="login-registration">
-                    <li class="on popup_li"> <a href="javascript:jumpLogin();" target="_self">登录</a> </li>
-                    <li class="on zhuce"> <a href="javascript:jumpRegister();" target="_self">注册</a> </li>
+                    <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
+                    <li class="on zhuce"> <a href="/qt/zhuce.jsp" >注册</a> </li>
                 </ul>
-                <ul class="login-registration">
-                    <li class="on popup_li">
-                        <span class="top_nav_icon"></span>
-                    </li>
-                    <li class="on zhuce"> <a href="javascript:showDoctorRegister();" target="_self">医生注册</a> </li>
-                </ul>
+                </c:if><c:if test="${curSuffer != null}">
+                <div class="fl"  >
+                    <ul class="login-registration">
+                        <li class="on "> <a href=>${curSuffer.suname}</a> </li>
+                        <li class="on "> <a href="/loginOut" >退出</a> </li>
+                        <li class="on zhuce"> <a href="qt/zhuce.jsp" >个人中心</a> </li>
+                    </ul>
+                    </c:if>
                 <div class="clr"></div>
             </div>
             <div class="fr H_top_nav fnone">
@@ -300,13 +296,13 @@
         <div class="section_list_left left">
             <ul class="section_nav clearfix">
                 <li><a          href="/qt/index.jsp"             target="_self">概览</a></li>
-                <li><a   class="hover"       href="/qt/xiangqing.jsp"       target="_self">详细介绍</a></li>
+                <li><a          href="/qt/xiangqing.jsp"       target="_self">详细介绍</a></li>
                 <li><a          href="/guahao"          target="_self">预约挂号</a></li>
-                <li><a          href="/qt/keshi.jsp" target="_self">医院科室</a></li>
-                <li><a          href="/qt/jibing.jsp"      target="_self">擅长疾病</a></li>
+                <li><a          href="/getAllDepart" target="_self">医院科室</a></li>
+                <li><a          href="/getAllIllness"      target="_self">擅长疾病</a></li>
                 <li><a          href="/qt/zhinan.jsp"  target="_self">预约指南</a></li>
-                <li><a          href="/qt/dayi.jsp"  target="_self">患者答疑</a></li>
-                <li><a          href="/qt/pingjia.jsp"  target="_self">就诊评价</a></li>
+                <li><a          href="/getAllConsult"  target="_self">患者答疑</a></li>
+                <li><a   class="hover"       href="/qt/pingjia.jsp"  target="_self">就诊评价</a></li>
             </ul>
 
 

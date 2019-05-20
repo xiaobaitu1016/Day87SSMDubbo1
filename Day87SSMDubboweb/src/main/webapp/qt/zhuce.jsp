@@ -80,7 +80,7 @@
 				return true;
 			}
 	</script>
-<form  action="/suffer" onsubmit="return f();" method="post">
+<form  action="/addsuffer" onsubmit="return f();" method="post">
     <div class="page">
         <div class="loginwarrp">
             <div class="logo">用户注册</div>
@@ -95,7 +95,7 @@
                     <input type="password"   class="login_input">
                     <span></span></li>
                 <li class="login-item"><span>手机号：</span>
-                    <input type="password"  name="phone" class="login_input">
+                    <input type="text"  name="phone" class="login_input">
                     <span></span></li>
 
                 <div class="clearfix"></div>

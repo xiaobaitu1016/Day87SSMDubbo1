@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>【西京医院就医指南】挂号_费用_地址_电话 西京医院网上预约挂号攻略大全 – 名医汇</title>
@@ -58,7 +59,23 @@
 <div class="g_top">
     <div class="w1200 g_top_contant" >
         <div class="w1200 g_top_contant" >
-            <!--头部-->
+            <c:if test="${curSuffer == null}">
+            <div class="fl"  >
+                <ul class="login-registration">
+                    <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
+                    <li class="on zhuce"> <a href="/qt/zhuce.jsp" >注册</a> </li>
+                </ul>
+                </c:if>
+                <c:if test="${curSuffer != null}">
+                <div class="fl"  >
+                    <ul class="login-registration">
+                        <li class="on "> <a href=>${curSuffer.suname}</a> </li>
+                        <li class="on "> <a href="/loginOut" >退出</a> </li>
+                        <li class="on zhuce"> <a href="qt/zhuce.jsp" >个人中心</a> </li>
+                    </ul>
+                    </c:if>
+                    <div class="clr"></div>
+                </div>
 
 
 
@@ -78,6 +95,7 @@
         </div>
     </div>
 </div>
+
 
 <!--导航e-->
 <script type="text/javascript">
@@ -286,11 +304,11 @@
             <ul class="section_nav clearfix">
                 <li><a          href="/qt/index.jsp"             target="_self">概览</a></li>
                 <li><a          href="/qt/xiangqing.jsp"       target="_self">详细介绍</a></li>
-                <li><a          href="/qt/guahao.jsp"          target="_self">预约挂号</a></li>
+                <li><a          href="/guahao"          target="_self">预约挂号</a></li>
                 <li><a          href="/getAllDepart" target="_self">医院科室</a></li>
-                <li><a          href="/qt/jibing.jsp"      target="_self">擅长疾病</a></li>
-                <li><a     class="hover"     href="/qt/zhinan.jsp"  target="_self">预约指南</a></li>
-                <li><a          href="/qt/dayi.jsp"  target="_self">患者答疑</a></li>
+                <li><a          href="/getAllIllness"      target="_self">擅长疾病</a></li>
+                <li><a  class="hover"        href="/qt/zhinan.jsp"  target="_self">预约指南</a></li>
+                <li><a          href="/getAllConsult"  target="_self">患者答疑</a></li>
                 <li><a          href="/qt/pingjia.jsp"  target="_self">就诊评价</a></li>
             </ul>
             <div class="clr"></div>
