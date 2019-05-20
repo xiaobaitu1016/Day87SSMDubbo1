@@ -45,7 +45,8 @@
                     <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
                     <li class="on zhuce"> <a href="/qt/zhuce.jsp" >注册</a> </li>
                 </ul>
-                </c:if><c:if test="${curSuffer != null}">
+                </c:if>
+                <c:if test="${curSuffer != null}">
                 <div class="fl"  >
                     <ul class="login-registration">
                         <li class="on "> <a href=>${curSuffer.suname}</a> </li>
