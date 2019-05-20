@@ -43,7 +43,7 @@
             <div class="fl"  >
                 <ul class="login-registration">
                     <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
-                    <li class="on zhuce"> <a href="qt/zhuce.jsp" >注册</a> </li>
+                    <li class="on zhuce"> <a href="/qt/zhuce.jsp" >注册</a> </li>
                 </ul>
                 </c:if><c:if test="${curSuffer != null}">
                 <div class="fl"  >
@@ -221,11 +221,11 @@
             <ul class="section_nav clearfix">
                 <li><a          href="/qt/index.jsp"             target="_self">概览</a></li>
                 <li><a          href="/qt/xiangqing.jsp"       target="_self">详细介绍</a></li>
-                <li><a    class="hover"      href="/guahao"          target="_self">预约挂号</a></li>
-                <li><a          href="/qt/keshi.jsp" target="_self">医院科室</a></li>
-                <li><a          href="/qt/jibing.jsp"      target="_self">擅长疾病</a></li>
+                <li><a     class="hover"    href="/guahao"          target="_self">预约挂号</a></li>
+                <li><a          href="/getAllDepart" target="_self">医院科室</a></li>
+                <li><a          href="/getAllIllness"      target="_self">擅长疾病</a></li>
                 <li><a          href="/qt/zhinan.jsp"  target="_self">预约指南</a></li>
-                <li><a          href="/qt/dayi.jsp"  target="_self">患者答疑</a></li>
+                <li><a          href="/getAllConsult"  target="_self">患者答疑</a></li>
                 <li><a          href="/qt/pingjia.jsp"  target="_self">就诊评价</a></li>
             </ul>
 

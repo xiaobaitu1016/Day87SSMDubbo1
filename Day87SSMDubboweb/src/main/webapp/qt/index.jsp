@@ -65,7 +65,7 @@
             <div class="fl"  >
                 <ul class="login-registration">
                     <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
-                    <li class="on zhuce"> <a href="qt/zhuce.jsp" >注册</a> </li>
+                    <li class="on zhuce"> <a href="/qt/zhuce.jsp" >注册</a> </li>
                 </ul>
                 </c:if><c:if test="${curSuffer != null}">
                 <div class="fl"  >
@@ -299,13 +299,13 @@
         <div class="authentication-popule"><h6>认证说明</h6><p>1、名医汇新增绿色认证标志、用于识别医院资质；</p><p>2、拥有绿色标志的医院，意味着该医院经过名医汇审核，且确认拥有正规营业执照及医疗机构执业许可证；</p><p>3、患友可以放心享受入驻名医汇的绿色医院所提供的就医服务；</p></div><div class="bond"><h6>保证金说明</h6><p>该医院已于名医汇平台缴纳安全保证金，若出现危害用户利益的行为，用户可申请赔偿。</p></div></div>--%>
     <div class="section_list_left left">
         <ul class="section_nav clearfix">
-            <li><a class="hover"         href="/index.jsp"             target="_self">概览</a></li>
+            <li><a class="hover"         href="/qt/index.jsp"             target="_self">概览</a></li>
             <li><a          href="/qt/xiangqing.jsp"       target="_self">详细介绍</a></li>
             <li><a          href="/guahao"          target="_self">预约挂号</a></li>
             <li><a          href="/getAllDepart" target="_self">医院科室</a></li>
-            <li><a          href="/qt/jibing.jsp"      target="_self">擅长疾病</a></li>
+            <li><a          href="/getAllIllness"      target="_self">擅长疾病</a></li>
             <li><a          href="/qt/zhinan.jsp"  target="_self">预约指南</a></li>
-            <li><a          href="/qt/dayi.jsp"  target="_self">患者答疑</a></li>
+            <li><a          href="/getAllConsult"  target="_self">患者答疑</a></li>
             <li><a          href="/qt/pingjia.jsp"  target="_self">就诊评价</a></li>
         </ul>
 

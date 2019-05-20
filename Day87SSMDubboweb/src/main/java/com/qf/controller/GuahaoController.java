@@ -122,7 +122,7 @@ public class GuahaoController {
             criteria.andPasswordEqualTo(password);
             Suffer suffer = sufferService.getAllSufferByExample(sufferExample).get(0);
             request.getSession().setAttribute("curSuffer",suffer);
-            
+
             return "qt/index" ;
         }else {
 
@@ -145,5 +145,31 @@ public class GuahaoController {
         }else {
             return "redirect:/Doctorxiangqing?did="+did;
         }
+    }
+   @PostMapping("/addsuffer")
+    public String addsuffer(HttpServletRequest request){
+       String suname = request.getParameter("suname");
+       String password = request.getParameter("password");
+       String phone = request.getParameter("phone");
+
+       Suffer suffer = new Suffer();
+       suffer.setSuname(suname);
+       suffer.setPassword(password);
+       suffer.setPhone(phone);
+
+       boolean b = sufferService.addSuffer(suffer);
+
+       if (b){
+           SufferExample sufferExample = new SufferExample();
+           SufferExample.Criteria criteria = sufferExample.createCriteria();
+           criteria.andSunameEqualTo(suname);
+           criteria.andPasswordEqualTo(password);
+           Suffer suffer1 = sufferService.getAllSufferByExample(sufferExample).get(0);
+           request.getSession().setAttribute("curSuffer",suffer1);
+
+           return "qt/index" ;
+       }else {
+           return "qt/zhece";
+       }
     }
 }
