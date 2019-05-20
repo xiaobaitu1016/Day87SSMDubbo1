@@ -25,4 +25,9 @@ public class IllnessServiceImpl implements IIllnessService {
     public List<Illness> getAllIllness (IllnessExample example) {
         return illnessMapper.selectByExample(example);
     }
+
+    @Override
+    public boolean addIllness(Illness illness) {
+        return illnessMapper.insert(illness) > 0;
+    }
 }
