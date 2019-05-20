@@ -19,4 +19,9 @@ public class ConsultAnswerServiceImpl implements IConsultAnswerService {
     public List<ConsultAnswer> getAllConsultAnswerByExample (ConsultAnswerExample example) {
         return consultAnswerMapper.selectByExample(example);
     }
+
+    @Override
+    public boolean addConsultAnswer(ConsultAnswer consultAnswer) {
+        return consultAnswerMapper.insert(consultAnswer) > 0;
+    }
 }

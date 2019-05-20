@@ -8,4 +8,6 @@ import java.util.List;
 public interface IConsultAnswerService {
 
     List<ConsultAnswer> getAllConsultAnswerByExample(ConsultAnswerExample example);
+
+    boolean addConsultAnswer(ConsultAnswer consultAnswer);
 }

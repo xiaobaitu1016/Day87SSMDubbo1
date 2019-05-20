@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -43,6 +44,8 @@ public class HchDepartmentsController {
     private IRolesService rolesService;
     @Resource
     private IDoctorIllnessService doctorIllnessService;
+    @Resource
+    private IConsultAnswerService consultAnswerService;
 
     @GetMapping("/toHtDepartmentsBigList")
     public String toHtDepartmentsBigList(Model model){
@@ -401,4 +404,120 @@ public class HchDepartmentsController {
         return true;
     }
 
+    @GetMapping("/toConsultList")
+    public String toConsultList(Model model){
+        model.addAttribute("allDoctor",doctorService.getAllDoctor(null));
+        model.addAttribute("allSuffer",sufferService.getAllSufferByExample(null));
+        return "ht/consultList";
+    }
+
+    @PostMapping("/htAllConsultList")
+    @ResponseBody
+    public LayuiUtil<Consult> htAllConsultList(HttpServletRequest request){
+
+        String did = request.getParameter("did");
+        String suid = request.getParameter("suid");
+
+        ConsultExample consultExample = new ConsultExample();
+        ConsultExample.Criteria criteria2 = consultExample.createCriteria();
+
+        if (did != null && !"".equals(did)){
+            int i = Integer.parseInt(did);
+            criteria2.andDidEqualTo(i);
+        }
+
+        if (suid != null && !"".equals(suid)){
+            criteria2.andSuidEqualTo(Integer.parseInt(suid));
+        }
+
+        LayuiUtil<Consult> layuiUtil = new LayuiUtil<>();
+
+        List<Consult> allConsultByExample = consultService.getAllConsultByExample(consultExample);
+
+        LayuiUtil<Consult> consultLayuiUtil = layuiUtil.toLayuiList(allConsultByExample);
+
+        return consultLayuiUtil;
+    }
+
+    @GetMapping("/toHtConsultListDescr/{cid}")
+    public String toHtConsultListDescr(Model model,@PathVariable int cid){
+        ConsultExample consultExample = new ConsultExample();
+        ConsultExample.Criteria criteria = consultExample.createCriteria();
+        criteria.andCidEqualTo(cid);
+
+        model.addAttribute("consult",consultService.getAllConsultByExample(consultExample).get(0));
+
+        ConsultAnswerExample consultAnswerExample = new ConsultAnswerExample();
+        ConsultAnswerExample.Criteria criteria1 = consultAnswerExample.createCriteria();
+
+        criteria1.andCidEqualTo(cid);
+        consultAnswerExample.setOrderByClause("time");
+
+        model.addAttribute("consultAnswer",consultAnswerService.getAllConsultAnswerByExample(consultAnswerExample));
+
+        return "ht/consultListDescr";
+    }
+
+    @GetMapping("/toHtConsultListMy")
+    public String toHtConsultListMy(Model model){
+        model.addAttribute("allDoctor",doctorService.getAllDoctor(null));
+        model.addAttribute("allSuffer",sufferService.getAllSufferByExample(null));
+        return "ht/consultListMy";
+    }
+
+    @PostMapping("/htAllConsultListMy")
+    @ResponseBody
+    public LayuiUtil<Consult> htAllConsultListMy(HttpServletRequest request){
+
+        ConsultExample consultExample = new ConsultExample();
+        ConsultExample.Criteria criteria2 = consultExample.createCriteria();
+
+        Doctor curDoctor = (Doctor) request.getSession().getAttribute("curDoctor");
+
+        criteria2.andDidEqualTo(curDoctor.getDid());
+
+        LayuiUtil<Consult> layuiUtil = new LayuiUtil<>();
+
+        List<Consult> allConsultByExample = consultService.getAllConsultByExample(consultExample);
+
+        LayuiUtil<Consult> consultLayuiUtil = layuiUtil.toLayuiList(allConsultByExample);
+
+        return consultLayuiUtil;
+    }
+
+    @GetMapping("/toHtConsultListMyDescr/{cid}")
+    public String toHtConsultListMyDescr(Model model,@PathVariable int cid){
+        ConsultExample consultExample = new ConsultExample();
+        ConsultExample.Criteria criteria = consultExample.createCriteria();
+        criteria.andCidEqualTo(cid);
+
+        model.addAttribute("consult",consultService.getAllConsultByExample(consultExample).get(0));
+
+        ConsultAnswerExample consultAnswerExample = new ConsultAnswerExample();
+        ConsultAnswerExample.Criteria criteria1 = consultAnswerExample.createCriteria();
+
+        criteria1.andCidEqualTo(cid);
+        consultAnswerExample.setOrderByClause("time");
+
+        model.addAttribute("consultAnswer",consultAnswerService.getAllConsultAnswerByExample(consultAnswerExample));
+
+        return "ht/consultListMyDescr";
+    }
+
+    @PostMapping("/answerSufferByDoctor")
+    @ResponseBody
+    public boolean answerSufferByDoctor(HttpServletRequest request){
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        String ansDescr = request.getParameter("ansDescr");
+        Date date = new Date();
+
+        ConsultAnswer consultAnswer = new ConsultAnswer();
+        consultAnswer.setCid(cid);
+        consultAnswer.setDescr(ansDescr);
+        consultAnswer.setRole("医师");
+        consultAnswer.setTime(date);
+
+        boolean b = consultAnswerService.addConsultAnswer(consultAnswer);
+        return b;
+    }
 }
