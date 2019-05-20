@@ -69,7 +69,7 @@
                     <ul class="login-registration">
                         <li class="on "> <a href=>${curSuffer.suname}</a> </li>
                         <li class="on "> <a href="/loginOut" >退出</a> </li>
-                        <li class="on zhuce"> <a href="qt/zhuce.jsp" >个人中心</a> </li>
+                        <li class="on zhuce"> <a href="/qt/personal.jsp" >个人中心</a> </li>
                     </ul>
                     </c:if>
                 <div class="clr"></div>

@@ -13,14 +13,6 @@
     <link rel="stylesheet" href="http://www.mingyihui.net/templates/skins/red2017/css/reset.css?v=20171017" />
     <link rel="stylesheet" href="http://www.mingyihui.net/templates/skins/red2017/css/style.css?v=20170729" />
     <link rel="stylesheet" href="http://www.mingyihui.net/templates/skins/red2017/css/popup.css?v=20170726" />
-    <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/jquery-1.9.1.min.js" ></script>
-    <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/jquery.SuperSlide.js"></script>
-    <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/TouchSlide.1.1.js?v=20160924" ></script>
-    <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/myjs.js?v=20160924" ></script>
-    <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/my.js?v=20160924"></script>
-    <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/common.js?v=20181130"></script>
-    <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/message.js?v=20160924"></script>
-    <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/stat.js?v=20160924"></script>
     <meta name="mobile-agent" content="format=html5;url=http://m.mingyihui.net/hospital_1302/index.html">
     <meta name="mobile-agent" content="format=xhtml;url=http://m.mingyihui.net/hospital_1302/index.html">
     <link rel="alternate" media="only screen and (max-width: 320px)" href="http://m.mingyihui.net/hospital_1302/index.html">
@@ -64,7 +56,7 @@
                     <ul class="login-registration">
                         <li class="on "> <a href=>${curSuffer.suname}</a> </li>
                         <li class="on "> <a href="/loginOut" >退出</a> </li>
-                        <li class="on zhuce"> <a href="qt/zhuce.jsp" >个人中心</a> </li>
+                        <li class="on zhuce"> <a href="/qt/personal.jsp" >个人中心</a> </li>
                     </ul>
                     </c:if>
                 <div class="clr"></div>
@@ -85,7 +77,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <!--导航e-->
 <script type="text/javascript">
 
@@ -286,10 +278,6 @@
 
 
 <div class="section_list w1200">
-    <div class="title_h1" style="position:relative;">
-
-
-
 
 
 
@@ -304,13 +292,30 @@
                 <li><a          href="/getAllConsult"  target="_self">患者答疑</a></li>
                 <li><a   class="hover"       href="/qt/pingjia.jsp"  target="_self">就诊评价</a></li>
             </ul>
+            <div class="individual_sharing">
+
+                    <script type="text/javascript" src="http://www.mingyihui.net/templates/skins/red2017/js/doctor.js?v=20160924"></script>
+                    <ul class="experience_ul">
+                        <li style="font-size: 12px">
+                            <div class="experience_right right ">
+                                <p class="experience_name"style="width: 252px;"> 就诊医生： <a href="/doctor_225914.html">陈文生</a><span class="color_333"> (心脏外科 主任医师,教授) </span> &nbsp;&nbsp;&nbsp; </p><p class="experience_name"> 患者：<span class="color_333"></span>       &nbsp;&nbsp;&nbsp; </p>
+                                <p class="experience_name"style="width: 170px"> 疾病： <span class="class"><a href="/YaJiXingGanRanXingXinNeiMoYan/" >亚急性感染性心内膜炎</a></span></p>
+                                <div class="comment_p clearfix">
+                                    <p> <span>看病过程：</span>陈主任临床经验丰富，及时诊断清楚我的病情，对我讲了这个病的严重性，及时安排手术，用他高超的医术拯救了我的生命，让我重获新生，我非常感激陈主任，谢谢您陈主任，您辛苦了，您对病人认真负责耐心的态度值得敬佩。<br><font color='#e72231'>评论来源：名医汇</font></p>
+                                </div>
+                                <div class="praise_time clearfix"> <a id="praise3087551" class="praise1" href='javascript:clickLike(3087551,8869336);' target="_self" title="感谢他帮助了我！">(0)</a> <span class="fr"> 2017/10/24 00:12 </span> </div>
+                            </div>
+                            <div class="clr"> </div>
+                        </li>
+                    </ul>
+
+                </div>
 
 
-            <div class="introduction_p">
-                   <h1>就诊评价</h1>
+
 
             </div>
-        </div>
+
         <!-- 右边内容 -->
         <div class="section_list_right right">
             <div id="advHospitalDetailRight" style="margin-bottom: 20px;">
