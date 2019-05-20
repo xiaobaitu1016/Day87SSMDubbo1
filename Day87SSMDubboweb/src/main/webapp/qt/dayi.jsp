@@ -337,7 +337,7 @@
                 <div style="border: darkgray">
                     <table>
                         <tr>
-                            <td class="td1">基本信息：</td>
+                            <td class="td1">基本信息:</td>
                             <td>${c.suffer.age}岁&nbsp;&nbsp;${c.suffer.sex}</td>
                             <td class="td1"><f:formatDate value="${c.time}" pattern="yyyy-MM-dd"></f:formatDate> </td>
                         </tr>
@@ -394,7 +394,7 @@
                         </div>
 
                         <tr>
-                            <td style="color: red;font-size: x-small"><br/>评论来源：名医汇</td>
+                            <td style="width:100px;color: red;font-size: x-small"><br/>评论来源：名医汇</td>
 
                         </tr>
                     </table>
