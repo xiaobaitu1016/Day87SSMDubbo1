@@ -72,7 +72,7 @@
                     <ul class="login-registration">
                         <li class="on "> <a href=>${curSuffer.suname}</a> </li>
                         <li class="on "> <a href="/loginOut" >退出</a> </li>
-                        <li class="on zhuce"> <a href="qt/zhuce.jsp" >个人中心</a> </li>
+                        <li class="on zhuce"> <a href="/qt/personal.jsp" >个人中心</a> </li>
                     </ul>
                     </c:if>
                 <div class="clr"></div>
@@ -368,7 +368,7 @@
                         <li class="clearfix">
                             <a href="/hospital_1302/expert_GuanXinBing.html" target="_self"><div class="classify_h3 left hscDisease">
                                 <p class="color_333">${i.ilname}</p>
-                                <span class="color_999" style="background: white ;color: black">(57人) ：</span></div></a>
+                                </div></a>
 
                             <c:forEach items="${allDoctors}" var="d">
                                 <c:if test="${d.dsid == i.dsid}">
@@ -384,16 +384,7 @@
                     </ul>
                 </div>
                 <div class="H_tra w1200" style="font-size: 12px">
-                    <ul >
-                        <li><a>1</a></li>
-                        <li><a href="http://www.mingyihui.net/hospital_1302/expert_pn2.html" target="_self">2</a></li>
-                        <li><a href="http://www.mingyihui.net/hospital_1302/expert_pn3.html" target="_self">3</a></li>
-                        <li><a href="http://www.mingyihui.net/hospital_1302/expert_pn4.html" target="_self">4</a></li>
-                        <li><a href="http://www.mingyihui.net/hospital_1302/expert_pn5.html" target="_self">5</a></li>
-                        <li><a href="http://www.mingyihui.net/hospital_1302/expert_pn2.html" target="_self">下一页</a></li>
-                        <li><a href="http://www.mingyihui.net/hospital_1302/expert_pn61.html" target="_self">末页</a></li>
 
-                    </ul>
                 </div>
             </div>
         </div>

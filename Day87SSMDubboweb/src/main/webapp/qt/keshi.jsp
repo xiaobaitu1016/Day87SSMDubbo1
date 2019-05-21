@@ -64,7 +64,7 @@
             <div class="fl"  >
                 <ul class="login-registration">
                     <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
-                    <li class="on zhuce"> <a href="/qt/zhuce.jsp" >注册</a> </li>
+                    <li class="on zhuce"> <a href="/qt/personal.jsp" >注册</a> </li>
                 </ul>
                 </c:if><c:if test="${curSuffer != null}">
                 <div class="fl"  >
@@ -331,7 +331,7 @@
                          <h3 class="left">${depart.dbname}</h3>
                             <ul class="list_ul right">
                                 <c:forEach items="${depart.departmentsSmallList}" var="s">
-                                    <li> <a class="color_333" href="">${s.dsname}</a> <span class="color_999">(39人)</span> </li>
+                                    <li> <a class="color_333" href="">${s.dsname}</a>  </li>
 
                                  </c:forEach>
                      </c:if>

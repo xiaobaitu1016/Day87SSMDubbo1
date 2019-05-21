@@ -60,9 +60,22 @@
 <div class="g_top">
     <div class="w1200 g_top_contant" >
         <div class="w1200 g_top_contant" >
-            <!--头部-->
-
-
+            <c:if test="${curSuffer == null}">
+            <div class="fl"  >
+                <ul class="login-registration">
+                    <li class="on "> <a href="/qt/denglu.jsp" >登录</a> </li>
+                    <li class="on zhuce"> <a href="/qt/zhuce.jsp" >注册</a> </li>
+                </ul>
+                </c:if><c:if test="${curSuffer != null}">
+                <div class="fl"  >
+                    <ul class="login-registration">
+                        <li class="on "> <a href=>${curSuffer.suname}</a> </li>
+                        <li class="on "> <a href="/loginOut" >退出</a> </li>
+                        <li class="on zhuce"> <a href="/qt/personal.jsp" >个人中心</a> </li>
+                    </ul>
+                    </c:if>
+                    <div class="clr"></div>
+                </div>
 
             <div class="fr H_top_nav fnone">
                 <ul id="topRight">
