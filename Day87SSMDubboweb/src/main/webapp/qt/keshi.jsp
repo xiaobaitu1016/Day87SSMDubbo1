@@ -331,7 +331,7 @@
                          <h3 class="left">${depart.dbname}</h3>
                             <ul class="list_ul right">
                                 <c:forEach items="${depart.departmentsSmallList}" var="s">
-                                    <li> <a class="color_333" href="">${s.dsname}</a> <span class="color_999">(39人)</span> </li>
+                                    <li> <a class="color_333" href="">${s.dsname}</a>  </li>
 
                                  </c:forEach>
                      </c:if>
