@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html>
 
@@ -53,10 +54,6 @@
                 <a href="javascript:;">
                     <img src="http://localhost:8088/images/doctor2.jpg" class="layui-nav-img"> ${curDoctor.dname}[${curDoctor.departmentsSmall.dsname}]
                 </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" kit-target data-options="{url:'basic.html',icon:'&#xe658;',title:'基本资料',id:'966'}"><span>基本资料</span></a></dd>
-                    <dd><a href="javascript:;">安全设置</a></dd>
-                </dl>
             </li>
             <li class="layui-nav-item"><a href="http://localhost:8088/ht/login.jsp"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a></li>
         </ul>
@@ -70,10 +67,12 @@
                 <li class="layui-nav-item">
                     <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 患者信息</span></a>
                     <dl class="layui-nav-child">
+                        <shiro:hasAnyRoles name="院长,科室主任">
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'/toHtSufferList',icon:'&#xe6c6;',title:'患者信息列表',id:'1'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 患者信息列表</span></a>
                         </dd>
+                        </shiro:hasAnyRoles>
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'/toHtSufferWaitList',icon:'&#xe6c6;',title:'就诊患者信息',id:'2'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 就诊患者信息</span></a>
@@ -88,10 +87,12 @@
                 <li class="layui-nav-item">
                     <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 医生信息</span></a>
                     <dl class="layui-nav-child">
+                        <shiro:hasAnyRoles name="院长,科室主任">
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'/toHtDoctorList',icon:'&#xe6c6;',title:'医生信息列表',id:'4'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 医生信息列表</span></a>
                         </dd>
+                        </shiro:hasAnyRoles>
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'/toHtDoctorCommitList',icon:'&#xe6c6;',title:'医生评价列表',id:'5'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 医生评价列表</span>
@@ -108,10 +109,12 @@
                 <li class="layui-nav-item">
                     <a class="" href="javascript:;"><i class="fa fa-plug" aria-hidden="true"></i><span> 科室信息</span></a>
                     <dl class="layui-nav-child">
+                        <shiro:hasAnyRoles name="院长,科室主任">
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'/toHtDepartmentsBigList',icon:'&#xe6c6;',title:'科室信息列表',id:'7'}">
                                 <i class="layui-icon">&#xe6c6;</i><span> 科室信息列表</span></a>
                         </dd>
+                        </shiro:hasAnyRoles>
                         <dd>
                             <a href="javascript:;" kit-target data-options="{url:'/departmentsSmallDescr/${curDoctor.dsid}',icon:'&#xe6c6;',title:'我的科室',id:'8'}">
                                 <i class="fa fa-user" aria-hidden="true"></i><span> 我的科室</span>
