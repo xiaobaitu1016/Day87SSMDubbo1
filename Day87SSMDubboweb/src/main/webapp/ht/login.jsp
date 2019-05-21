@@ -74,15 +74,19 @@
             var sdid = $("#did").val();
             var spass = $("#pass").val();
 
-            $.post("/loginHtIndex",{did:sdid,pass:spass},function (data) {
-                console.log(data);
-                if (data){
-                    location.href="/loginHtIndexTj";
-                } else {
-                    layer.msg('用户名或密码错误');
-                }
+            if (sdid.length>0&&spass.length>0){
+                $.post("/loginHtIndex",{did:sdid,pass:spass},function (data) {
+                    console.log(data);
+                    if (data){
+                        location.href="/loginHtIndexTj";
+                    } else {
+                        layer.msg('用户名或密码错误');
+                    }
 
-            });
+                });
+            }
+
+
         });
     });
 

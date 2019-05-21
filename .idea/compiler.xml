@@ -14,5 +14,8 @@
         <module name="Day87SSMDubboweb" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Day87SSMDubboshiro" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

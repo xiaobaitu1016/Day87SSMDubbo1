@@ -3,6 +3,10 @@ package com.qf.controller;
 import com.qf.pojo.*;
 import com.qf.pojo.Number;
 import com.qf.service.*;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,18 +90,18 @@ public class HchMainController {
         }else {
             String substring = did.substring(2);
             int idid = Integer.parseInt(substring)-10000;
-
-            Doctor doctor = new Doctor();
-            doctor.setDid(idid);
-            doctor.setPassword(pass);
-
-            Doctor login = doctorService.login(doctor);
-
-            if (login == null){
-                return false;
-            }else{
-                request.getSession().setAttribute("curDoctor",login);
+            Doctor allDoctorByDid = doctorService.getAllDoctorByDid(idid);
+            String ddid = idid+"";
+            UsernamePasswordToken token = new UsernamePasswordToken(ddid, pass);
+            token.setRememberMe(true);
+            Subject subject = SecurityUtils.getSubject();
+            try {
+                subject.login(token);
+                request.getSession().setAttribute("curDoctor",allDoctorByDid);
                 return true;
+            }catch (AuthenticationException e){
+                e.printStackTrace();
+                return false;
             }
         }
     }
