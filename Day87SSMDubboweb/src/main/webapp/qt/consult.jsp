@@ -336,7 +336,7 @@
 
 
         </div>
-<div style="float: right ;position: absolute;margin-top: -510px;margin-left: 1000px">
+<div style="float: right ;position: relative;margin-top: -510px;margin-right: 150px">
     <div class="section_list_right right" >
 
     <!--擅长同类疾病医生start-->

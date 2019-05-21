@@ -339,7 +339,7 @@
                         <tr>
                             <td class="td1">基本信息:</td>
                             <td>${c.suffer.age}岁&nbsp;&nbsp;${c.suffer.sex}</td>
-                            <td class="td1"><f:formatDate value="${c.time}" pattern="yyyy-MM-dd"></f:formatDate> </td>
+
                         </tr>
                         <tr>
                             <td class="td1"><br/>病情描述：</td>
@@ -439,7 +439,7 @@
 
 
         </div>
-<div style="float: right ;position: absolute;margin-top: -510px;margin-left: 1000px">
+    <div style="float: right ;position: relative;margin-top: -510px;margin-right: 150px">
     <div class="section_list_right right">
 
     <!--擅长同类疾病医生start-->

@@ -319,26 +319,24 @@
 
 
                     <ul class="list_ul list_list clearfix" >
-                        <li class="  on" ><a href="http://www.mingyihui.net/hospital_1302/expert.html" target="_self">全部</a></li>
-                        <c:forEach items="${allDoctor}" var="d">
-                            <c:if test="${d.departmentsSmall.dsid!=7}">
-                        <li class=" "><a href="selectByDsname?dsid=${d.dsid}" target="_self">${d.departmentsSmall.dsname}</a></li>
+                        <li class="  on" ><a href="getAllIllness" target="_self">全部</a></li>
+                        <c:forEach items="${allSmall}" var="d">
+                            <c:if test="${d.dsid!=7}">
+                        <li class=" "><a href="selectByDsname?dsid=${d.dsid}" target="_self">${d.dsname}</a></li>
 
-                         <c:if test="${d.departmentsSmall.dsid>7}" >
-                        <li class="con_hidden "><a href="http://www.mingyihui.net/hospital_1302/expert_3.html" target="_self">$${d.departmentsSmall.dsname}</a></li>
-
-                         </c:if>
                             </c:if>
+
+
                         </c:forEach>
                     </ul>
 
-                    <a class="unfold border H_open" href="javascript:void(0);" target="_self">展开 </a> <a class="unfold border H_close H_contraction" href="javascript:;" target="_self">收缩</a>  </div>
+                    <a class="unfold border H_open" href="javascript:void(0);" target="_self">展开</a> <a class="unfold border H_close H_contraction" href="javascript:;" target="_self">收缩</a>  </div>
                 <div class="illness_list clearfix">
                     <div class="list_h2"> 医生职称：</div>
                     <ul class="list_ul clearfix">
-                        <li class="  on"><a href="http://www.mingyihui.net/hospital_1302/expert.html" target="_self">全部</a></li>
-                        <c:forEach items="${allDoctor}" var="dr">
-                            <li class=" "><a href="selectByDrname?drid=${dr.drid}&&dsid=${dr.dsid}" target="_self">${dr.doctorRole.drname}</a></li>
+                        <li class="  on"><a href="getAllIllness" target="_self">全部</a></li>
+                        <c:forEach items="${allDoctorRole}" var="dr">
+                            <li class=" "><a href="selectByDrname?drid=${dr.drid}" target="_self">${dr.drname}</a></li>
                         </c:forEach>
 
 
@@ -366,7 +364,7 @@
                     <ul>
                         <c:forEach items="${allIllness}" var="i">
                         <li class="clearfix">
-                            <a href="/hospital_1302/expert_GuanXinBing.html" target="_self"><div class="classify_h3 left hscDisease">
+                            <a href="selectByDsname?dsid=${i.dsid}" target="_self"><div class="classify_h3 left hscDisease">
                                 <p class="color_333">${i.ilname}</p>
                                 </div></a>
 
